@@ -1,0 +1,46 @@
+body {
+    background-image: url("topography.png");
+		font-family: consolas;
+		line-height: 2em;
+}
+header {
+    background-color: #333333;
+		padding: 0 0;
+}
+#header {
+		padding: 0 10%;
+}
+#notheader {
+		padding: 10% 10% 0 10%;
+}
+img {
+		padding: 10px 0 10px 0;
+}
+nav {
+		float: right;
+}
+li {
+		display: inline;
+		padding: 0 12px 0 12px;
+}
+ul {
+    list-style-type: none;
+}
+h1, h2 {
+    font-family: 'Roboto Slab', serif;
+}
+#name{
+    font-size: 48px;
+}
+#wiki {
+		text-align: left;
+}
+#wikititle {
+    text-align: center;
+}
+#separator {
+    text-align: center;
+}
+#pink, a {
+    color: #ff0099
+}
