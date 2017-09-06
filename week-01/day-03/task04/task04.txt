@@ -1,2 +1,4 @@
 Task04
 hello
+bye
+rabbit
