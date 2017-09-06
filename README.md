@@ -1,1 +1,1 @@
-[Go to Rabbit Syllabus](https://github.com/greenfox-academy/rabbit-syllabus Rabbit Syllabus)
+[Go to Rabbit Syllabus](https://github.com/greenfox-academy/rabbit-syllabus)
