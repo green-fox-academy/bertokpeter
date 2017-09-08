@@ -45,7 +45,7 @@ div.column > input, select {
     padding: 10px;
 }
 #date {
-    
+    width: 40%;
 }
 label {
     font-weight: bold;
