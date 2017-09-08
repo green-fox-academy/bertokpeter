@@ -36,14 +36,21 @@ div.column {
 #header {
     font-size: 32px;
 }
+input {
+    margin: 5px 0 5px 0;
+}
 div.column > input, select {
     width: 100%;
     border-radius: 4px;
     padding: 10px;
 }
+#date {
+    
+}
 label {
     font-weight: bold;
-    font-size: 12px;
+    font-size: 13px;
+    padding: 5px 0 5px 0;
 }
 p {
     color: white;
@@ -59,9 +66,6 @@ p {
 }
 a {
     font-weight: lighter;
-    color: grey;
-}
-select option:first-child{
     color: grey;
 }
 
