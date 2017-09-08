@@ -23,3 +23,16 @@ div {
     height: 435px;
     margin-right: -4px;
 }
+article {
+    border: 1px solid black;
+    height: 145px;
+}
+article.column {
+    height: 45px;
+    margin-top: 45px;
+}
+div.column {
+    vertical-align: top;
+}
+
+
