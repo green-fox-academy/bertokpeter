@@ -10,16 +10,48 @@
 	<body>
 		<main>
 			<form action="/day-05" method="post">
-				<div>Profil</div>
+				<div id="header">Profil</div>
 				<div class="column">
+					<p>Személyes adatok</p>
+					<label for="name">Név</label><br/>
+					<input type="text" id="name" name="name"/>
 					<article class="column">
+						<label for="date">Születési éved</label><br/>
+						<input type="text" placeholder="pl.1984" id="date" name="date"/>
 					</article>	
 					<article class="column"> 
-					</article>	
+						<label>Nemed</label><br/>
+						<input type="radio" id="female" name="gender"/>
+						<label for="female">nő</label>
+						<input type="radio" id="male" name="gender"/>
+						<label for="male">férfi</label>
+					</article>
 					<article>
+						<label>Milyen márkákat szeretsz?</label><br/>
+						<input type="checkbox" id="Adidas">
+						<label for="Adidas">Adidas</label>
+						<input type="checkbox" id="Opel">
+						<label for="Opel">Opel</label><br/>
+						<input type="checkbox" id="Apple">
+						<label for="Apple">Apple</label>
+						<input type="checkbox" id="Ray-Ban">
+						<label for="Ray-Ban">Ray-Ban</label><br/>
+						<input type="checkbox" id="Coca-cola">
+						<label for="Coca-cola">Coca-cola</label>
+						<input type="checkbox" id="Starbucks">
+						<label for="Starbucks">Starbucks</label><br/>
+						<input type="checkbox" id="Mazda">
+						<label for="Mazda">Mazda</label>
+						<input type="checkbox" id="Tesla">
+						<label for="Tesla">Tesla</label><br/>
+						<input type="checkbox" id="Nike">
+						<label for="Nike">Nike</label><input type="checkbox" id="Yahoo">
+						<label for="Yahoo">Yahoo</label><br/>
+						<p id="multiple">Többet is választhatsz!</p>	
 					</article>	
 				</div>
 				<div class="column">
+					<p>Kapcsolat</p>
 				</div>
 				<div>
 				</div>

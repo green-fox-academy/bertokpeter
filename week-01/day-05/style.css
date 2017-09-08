@@ -1,21 +1,20 @@
 * {
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
-}
-body {
-    background: rgb(220, 214, 205);
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(74, 66, 97)
 }
 main {
-    width: 80%;
+    background: rgb(220, 214, 205);
+    width: 60%;
     height: 900px;
-    background-color: green;
     margin: 10px auto;
     padding-top: 15px;
 }
 div {
     margin: 0 0 15px 0;
     padding: 15px;
-    background: red;
 }
 .column {
     width: 50%;
@@ -26,13 +25,26 @@ div {
 article {
     border: 1px solid black;
     height: 145px;
+    margin-top: 15px;
 }
 article.column {
     height: 45px;
-    margin-top: 45px;
 }
 div.column {
     vertical-align: top;
 }
-
+#header {
+    font-size: 32px;
+}
+input[type="text"] {
+    width: 100%;
+}
+label {
+    font-weight: bold;
+    font-size: 12px;
+}
+#multiple {
+    color: grey;
+    font-size: 12px;
+}
 
