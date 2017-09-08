@@ -1,0 +1,13 @@
+* {
+    margin: 0;
+}
+body {
+    background: rgb(220, 214, 205);
+}
+main {
+    box-sizing: border-box;
+    width: 80%;
+    height: 900px;
+    background-color: green;
+    margin: 10px auto;
+}
