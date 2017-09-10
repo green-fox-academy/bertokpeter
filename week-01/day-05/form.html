@@ -11,7 +11,7 @@
 	<body>
 		<main>
 			<form action="/day-05" method="post">
-				<div id="header">Profil</div>
+				<header>Profil</header>
 				<div class="column">
 					<p>Személyes adatok</p>
 					<label for="name">Név</label><br/>
@@ -20,35 +20,28 @@
 						<label for="date">Születési éved</label><br/>
 						<input type="text" placeholder="pl.1984" id="date" name="date"/>
 					</article>	
-					<article class="column"> 
+					<article class="column gender"> 
 						<label>Nemed</label><br/>
 						<input type="radio" id="female" name="gender"/>
 						<label for="female">nő</label>
 						<input type="radio" id="male" name="gender"/>
 						<label for="male">férfi</label>
 					</article>
-					<article>
+					<article class="checkbox">
 						<label>Milyen márkákat szeretsz?</label><br/>
-						<input type="checkbox" id="Adidas">
-						<label for="Adidas">Adidas</label>
-						<input type="checkbox" id="Opel">
-						<label for="Opel">Opel</label><br/>
-						<input type="checkbox" id="Apple">
-						<label for="Apple">Apple</label>
-						<input type="checkbox" id="Ray-Ban">
-						<label for="Ray-Ban">Ray-Ban</label><br/>
-						<input type="checkbox" id="Coca-cola">
-						<label for="Coca-cola">Coca-cola</label>
-						<input type="checkbox" id="Starbucks">
-						<label for="Starbucks">Starbucks</label><br/>
-						<input type="checkbox" id="Mazda">
-						<label for="Mazda">Mazda</label>
-						<input type="checkbox" id="Tesla">
-						<label for="Tesla">Tesla</label><br/>
-						<input type="checkbox" id="Nike">
-						<label for="Nike">Nike</label><input type="checkbox" id="Yahoo">
-						<label for="Yahoo">Yahoo</label><br/>
-						<p id="multiple">Többet is választhatsz!</p>	
+						<ul>
+							<li><input type="checkbox" id="Adidas"><label for="Adidas">Adidas</label></li>
+							<li><input type="checkbox" id="Opel"><label for="Opel">Opel</label></li>
+							<li><input type="checkbox" id="Apple"><label for="Apple">Apple</label></li>
+							<li><input type="checkbox" id="Ray-Ban"><label for="Ray-Ban">Ray-Ban</label></li>
+							<li><input type="checkbox" id="Coca-cola"><label for="Coca-cola">Coca-cola</label></li>
+							<li><input type="checkbox" id="Starbucks"><label for="Starbucks">Starbucks</label></li>
+							<li><input type="checkbox" id="Mazda"><label for="Mazda">Mazda</label></li>
+							<li><input type="checkbox" id="Tesla"><label for="Tesla">Tesla</label></li>
+							<li><input type="checkbox" id="Nike"><label for="Nike">Nike</label></li>
+							<li><input type="checkbox" id="Yahoo"><label for="Yahoo">Yahoo</label></li>
+						</ul>
+						<p id="multiple">Többet is választhatsz!</p>
 					</article>	
 				</div>
 				<div class="column">
@@ -68,15 +61,15 @@
 						<option>Családi ház</option>	
 					</select>	
 				</div>
-				<div>
+				<div class="buttons">
 						<label for="msg">Bemutatkozás</label><br/>
 						<textarea id="msg" name="message" placeholder="Írj magadról néhány mondtatot!" required></textarea><br/>
 						<label for="CV">CV feltöltése</label><br/>
-						<input type="button" value="FÁJL KIVÁLASZTÁSA"/><br/>
+						<input type="button" value="FILE KIVÁLASZTÁSA"/><br/>
 						<input type="checkbox" id="tick">
 						<label for="tick">Elfogadom a <a href="https://github.com/greenfox-academy/teaching-materials/tree/master/workshop/ui-development/forms">felhasználási feltételeket</a></label><br/>
 						<input type="submit" value="MENTÉS"/>
-						<input type="reset" value="ŰRLAP TÖRLÉSE"/><br/>
+						<input type="reset" value="ŰRLAP TÖRLÉSE"/>
 				</div>
 			</form>
 	</main>
