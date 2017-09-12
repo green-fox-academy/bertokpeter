@@ -8,7 +8,7 @@
 #
 # - Print this two dimensional list to the output
 matrix = [[],[],[],[]]
-for i in range(0,len(matrix)):
+for i in range(len(matrix)):
     matrix[i] = [0,0,0,0]
     matrix[i][i] += 1
     print(matrix[i])
