@@ -1,7 +1,12 @@
-# Reverse the string using StringBuilder
+# Create a function called 'reverse_string' which takes a string as a parameter
+# The function reverses it and returns with the reversed string
 
 reverse = ".eslaf eb t'ndluow ecnetnes siht ,dehctiws erew eslaf dna eurt fo sgninaem eht fI"
 # Solution 1
-print(reverse[::-1])
+def reverse_string(text):
+    return text[::-1]
+print(reverse_string(reverse))
 # Solution 2
-print("".join(reversed(reverse)))
+def reverse_string(text):
+    return "".join(reversed(reverse))
+print(reverse_string(reverse))
