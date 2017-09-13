@@ -12,4 +12,3 @@ elif a == 2:
     print("Two")
 else:
     print("A lot")
-
