@@ -3,9 +3,9 @@
 # 
 # Surface Area: 600
 # Volume: 1000
-a = 53.4
-b = 11.89
-c = 25.5
+a = 53
+b = 11
+c = 25
 
-print("Surface Area: " + str( a*b*2 + a*c*2 + b*c*2))
+print("Surface Area: " + str( 2*(a*b + a*c + b*c)))
 print("Volume: " + str(a*b*c))
