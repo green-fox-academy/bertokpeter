@@ -12,12 +12,11 @@
 #
 # The diamond should have as many lines as the number was
 a = int(input("Please enter a number: "))
-
 for i in range(1,(a+1)//2+1):
-    print(" "*((a+1)//2-i)+"*"*(i*2-1)+" "*((a+1)//2-i))
+    print(" "*((a+1)//2-i)+"*"*(i*2-1))
 if a%2 != 0:   
     for i in range(1,a//2+1):
-        print(" "*i+"*"*(a-i*2)+" "*i)
+        print(" "*i+"*"*(a-i*2))
 else:   
     for i in range(1,a//2+1):
-        print(" "*(i-1)+"*"*((a+1)-i*2)+" "*(i-1))
+        print(" "*(i-1)+"*"*((a+1)-i*2))
