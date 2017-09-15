@@ -11,7 +11,7 @@ def guess(range):
         if lives == 0:
             print("Sorry you died. Better luck next time!")
         elif a < number:
-            print("Too low. You've " + str(lives) + "left.")
+            print("Too low. You've " + str(lives) + "lives left.")
             a = int(input("Can you guess the number? "))
         else:
             print("Too high. You've " + str(lives) + "left.")
