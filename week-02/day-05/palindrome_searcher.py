@@ -18,7 +18,7 @@ def palindrome_searcher(long_text):
     length = len(lowercase)
     palindrome_list = []
     for i in range(length-2):
-        for j in range(3,length):
+        for j in range(3,length + 1):
             if lowercase[i:i+j] == palindrome[length-(i+j):length-i]:
                 palindrome_list.append(lowercase[i:i+j])
     return palindrome_list
