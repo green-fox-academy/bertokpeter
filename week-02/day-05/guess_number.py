@@ -14,7 +14,7 @@ def guess(range):
             print("Too low. You've " + str(lives) + "lives left.")
             a = int(input("Can you guess the number? "))
         else:
-            print("Too high. You've " + str(lives) + "left.")
+            print("Too high. You've " + str(lives) + "lives left.")
             a = int(input("Can you guess the number? "))
     if a == number:
         print("Congratulations! You found the number: " + str(number))
