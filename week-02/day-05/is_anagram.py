@@ -3,7 +3,7 @@ anagram2 = input("Please enter your second word here: ")
 def string_to_list(text):
     word = []
     for i in range(len(text)):
-        word.append(text[i])
+        word.append(text[i].lower())
     return word
 def is_anagram(tex1, text2):
     word1 = string_to_list(tex1)
