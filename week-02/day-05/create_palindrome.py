@@ -1,14 +1,8 @@
 palindrome= input("Please enter your word here: ")
-def string_to_list(text):
-    word = []
-    for i in range(len(text)):
-        word.append(text[i])
-    return word
+def reverse_string(text):
+    return text[::-1]
 def create_palindrome(palindrome):
-    word_list = string_to_list(palindrome)
-    length = len(word_list)
-    while length > 0:
-        palindrome = palindrome + word_list[length-1]
-        length -= 1
+    reversed_word = reverse_string(palindrome)
+    palindrome = palindrome + reversed_word
     return palindrome
 print(create_palindrome(palindrome))
