@@ -5,12 +5,15 @@
 # Returns an empty list if the number is not part any of the numbers in the list
 # Example
 
-input_list= [1, 11, 34, 52, 61]
+input_list= [1, 11, 34, 52, 61, 315]
 input_number = 1
 # output: [0, 1, 4]
 def find_integer(number_list, number):
-    if number in number_list:
-        return enumerate(number)
-    else:
-        return []
+    string_number = str(number)
+    output = []
+    for i in range(len(number_list)):
+        list_number = str(number_list[i])
+        if string_number in list_number:
+            output.append(i)
+    return output
 print(find_integer(input_list,input_number))
