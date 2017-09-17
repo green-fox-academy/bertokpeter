@@ -6,15 +6,16 @@ def create_list(number):
     return number_list
 def josephus(number):
     number_list = create_list(number)
-    length = len(number_list)
+    i = 0
     while len(number_list) > 1:
-        for i in range((length+1)//2):
-            if number_list[i] == number_list[len(number_list)-1]:
-                number_list.remove(number_list[0])
-                break
+        if i == len(number_list)-1:
+            number_list.remove(number_list[0])
+            i = 0
+        else:
+            number_list.remove(number_list[i+1])
+            if i == len(number_list)-1:
+                i = 0
             else:
-                number_list.remove(number_list[i+1])
-                if number_list[i] == number_list[len(number_list)-1]:
-                    break
+                i += 1
     return number_list
 print(josephus(input_number))
