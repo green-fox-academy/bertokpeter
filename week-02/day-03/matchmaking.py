@@ -5,15 +5,13 @@ girls = ["Eve", "Ashley", "Bozsi", "Kat", "Jane"]
 boys = ["Joe", "Fred", "Bela", "Todd", "Neef", "Jeff"]
 import random
 order = []
-length_girls = len(girls)
-length_boys = len(boys)
-for i in range(length_girls + length_boys + 1):
-    if i%2 == 0 and len(girls) > 0:
-        number = random.randint(0,length_girls-i/2-1)
+while len(girls) > 0 or len(boys) > 0:
+    if len(girls) > 0:
+        number = random.randint(0,len(girls)-1)
         order.append(girls[number])
-        girls[number:number+1] = []
-    if i%2 == 1 and len(boys) > 0:
-        number = random.randint(0,length_boys-(i//2)-1)
+        girls.remove(girls[number])
+    if len(boys) > 0:
+        number = random.randint(0,len(boys)-1)
         order.append(boys[number])
-        boys[number:number+1] = []
+        boys.remove(boys[number])
 print(order)
