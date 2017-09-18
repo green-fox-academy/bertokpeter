@@ -2,7 +2,7 @@
 # then returns the number of lines the file contains.
 # It should return zero if it can't open the file, and
 # should not raise any error.
-my_file = "my-file.txt"
+my_file = "week-03/day-01/my-file.txt"
 def line_counter(file_name):
     try:
         file = open(file_name, "r")
