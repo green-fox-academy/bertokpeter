@@ -8,6 +8,7 @@ def line_printer(file_name):
         file = open(file_name, "r")
         for line in file_name:
             print(line)
+        file.close()
     except IOError:
         print("Unable to read file: " + file_name)
 line_printer(my_file)
