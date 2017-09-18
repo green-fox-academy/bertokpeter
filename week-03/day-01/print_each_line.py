@@ -6,7 +6,7 @@ my_file = "my-file.txt"
 def line_printer(file_name):
     try:
         file = open(file_name, "r")
-        for line in file_name:
+        for line in file:
             print(line)
         file.close()
     except IOError:
