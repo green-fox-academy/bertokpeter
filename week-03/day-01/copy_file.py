@@ -8,4 +8,8 @@ def copy_file(file_1, file_2):
         f1_content = f1.read()
     with open(file_2, "w") as f2:
         f2.write(f1_content)
-copy_file(first_file, second_file)
+try:
+    copy_file(first_file, second_file)
+    print(True)
+except:
+    print(False)
