@@ -6,5 +6,5 @@ def reverse_order(file_name):
         for line in f1:
             line_list.append(line)
     for i in line_list[::-1]:
-        print(i)
+        print(i, end='')
 reverse_order(rev_ordered_file)
