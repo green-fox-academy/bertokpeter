@@ -11,6 +11,10 @@ canvas.pack()
 def draw_steps(size,number):
     start_width = 5
     start_height = 5
+    if size > 145:
+        size = 145
+    if size*number+5 > 300:
+        number = 295//size
     for i in range(number):
         end_width = start_width + size
         end_height = start_height + size
@@ -19,6 +23,6 @@ def draw_steps(size,number):
         start_width = end_width
         start_height = end_height
 
-draw_steps(10,23)
+draw_steps(300,33)
 
 root.mainloop()
