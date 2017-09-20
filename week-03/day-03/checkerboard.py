@@ -9,13 +9,12 @@ try:
     canvas.pack()
 
     # fill the canvas with a checkerboard pattern.
-    def draw_checkboard(row_size):
-        number_of_rows = row_size
-        size = canvas_width/row_size
+    def draw_checkboard(number_of_rows):
+        size = canvas_width/number_of_rows
         start_width = 0
         start_height = 0
         for i in range(number_of_rows):
-            for j in range(number_of_rows+1//2):
+            for j in range((number_of_rows+1)//2):
                 end_width = start_width + size
                 end_height = start_height + size
                 coords = [start_width, start_height, end_width, end_height]
