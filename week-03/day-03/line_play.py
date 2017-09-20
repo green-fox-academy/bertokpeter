@@ -14,7 +14,7 @@ try:
             canvas.create_line(0,distance*j,distance*j+distance,canvas_height, fill="green")
             canvas.create_line(distance*j,0,canvas_width,distance*j+distance, fill="purple")
 
-    line_play(30)
+    line_play(10)
     root.mainloop()
 except TypeError:
     print("distance must be integer")
