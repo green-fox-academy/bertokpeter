@@ -23,6 +23,6 @@ def draw_steps(size,number):
         start_width = end_width
         start_height = end_height
 
-draw_steps(300,33)
+draw_steps(15,13)
 
 root.mainloop()
