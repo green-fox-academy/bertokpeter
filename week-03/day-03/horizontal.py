@@ -1,3 +1,4 @@
+import random
 from tkinter import *
 
 root = Tk()
@@ -12,7 +13,8 @@ canvas.pack()
 def draw_line(x,y):
     canvas.create_line(x, y, x+50, y)
 
-for i in (10, 50, 70):
-    draw_line(1*i, 2*i)
+for i in range(3):
+    start_number = random.randint(0, 150)
+    draw_line(1*start_number, 2*start_number)
 
 root.mainloop()
