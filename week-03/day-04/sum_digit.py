@@ -10,3 +10,11 @@ def sum_digits(number):
         return number//(10**log10) + sum_digits(number%(10**log10))
 
 print(sum_digits(985626))
+
+def sum_digits_ati(number):
+    if number == 0:
+        return number
+    else:
+        return number%10 + sum_digits(number//10)
+
+print(sum_digits_ati(333)) 
