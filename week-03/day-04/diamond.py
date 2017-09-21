@@ -1,6 +1,5 @@
 from tkinter import *
 import math
-import time
 root = Tk()
 
 canvas_width = 600
