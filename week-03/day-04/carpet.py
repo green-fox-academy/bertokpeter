@@ -1,5 +1,4 @@
 from tkinter import *
-import math
 root = Tk()
 
 canvas_width = 600
