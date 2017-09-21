@@ -14,20 +14,15 @@ def triangle_height(size):
      return math.sqrt(size**2-(size/2)**2)
 
 def diamond(x,y,w):
-    if w < 15:
+    if w < 1:
         pass
     else:
-        start_x = x - w/2
-        height = triangle_height(w)
-        canvas.create_line(start_x,y-height,start_x+w,y-height)
-        canvas.create_line(start_x+w,y-height,start_x+1.5*w,y)
-        canvas.create_line(start_x+1.5*w,y,start_x+w,y+height)
-        canvas.create_line(start_x+w,y+height,start_x,y+height)
-        canvas.create_line(start_x,y+height,start_x-w/2,y)
-        canvas.create_line(start_x-w/2,y,start_x,y-height)
-        diamond(start_x+w/4,y-height/2,w/2)
-        diamond(start_x+w,y,w/2)
-        diamond(start_x+w/4,y+height/2,w/2)
+        h = triangle_height(w)
+        canvas.create_polygon(x-w/2, y-h, x-w/2+w, y-h, x-w/2+1.5*w, y,
+        x-w/2+w, y+h, x-w/2, y+h, x-w/2-w/2, y, outline="black",width=1,fill="")
+        diamond(x-w/2+w/4,y-h/2,w/2)
+        diamond(x-w/2+w,y,w/2)
+        diamond(x-w/2+w/4,y+h/2,w/2)
 
 diamond(x,y,w)
 
