@@ -26,12 +26,14 @@ def big_triangle(size):
     top_y = canvas_height/2 - big_height/2
     return [left_x,left_y,right_x,right_y,top_x,top_y]
 
-# def triangle(size):
-#     for i in range(11):
-#         canvas.create_polygon(45+i*size,295,150,295-triangle_height*(21-i*2),255-i*size,295,outline="black",width=2,fill="")
-#         canvas.create_polygon(45+i*(size/2),295-triangle_height*i,150-i*(size/2),295-triangle_height*(21-i),255-i*size*1.5,295-triangle_height*i,outline="black",width=2,fill="")
-#         canvas.create_polygon(45+i*size*1.5,295-triangle_height*i,150+i*(size/2),295-triangle_height*(21-i),255-i*(size/2),295-triangle_height*i,outline="black",width=2,fill="")
+def triangles_in_triangles(size):
+    height = triangle_height(size)
+    coords = big_triangle(size)
+    for i in range(21):
+        canvas.create_line(coords[0]+i*(size/2),coords[1]-i*height,coords[2]-i*(size/2),coords[3]-i*height)
+        canvas.create_line(coords[0]+i*size,coords[1],coords[4]+i*(size/2),coords[5]+i*height)
+        canvas.create_line(coords[4]-i*(size/2),coords[5]+i*height,coords[2]-i*size,coords[3])
 
-big_triangle(size)
+triangles_in_triangles(size)
 
 root.mainloop()
