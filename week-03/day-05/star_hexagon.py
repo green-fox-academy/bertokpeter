@@ -15,16 +15,19 @@ def triangle_height(size):
      return math.sqrt(size**2-(size/2)**2)
 
 def star_hexagon(x,y,w):
-    if w < 15:
+    if w < 2.5:
         pass
     else:
         initx = x-w/2
         h = triangle_height(w)
         canvas.create_polygon(initx, y-h, initx+w, y-h, initx+1.5*w, y,
         initx+w, y+h, initx, y+h, initx-w/2, y, outline="black", width=1, fill="")
-        diamond(x-w/4, y-h/2, w/2)
-        diamond(x+w/2, y, w/2)
-        diamond(x-w/4, y+h/2, w/2)
+        star_hexagon(x-w/3, y-h*2/3, w/3)
+        star_hexagon(x+w/3, y-h*2/3, w/3)
+        star_hexagon(x+w*2/3, y, w/3)
+        star_hexagon(x+w/3, y+h*2/3, w/3)
+        star_hexagon(x-w/3, y+h*2/3, w/3)
+        star_hexagon(x-w*2/3, y, w/3)
 
 star_hexagon(x,y,w)
 
