@@ -2,15 +2,15 @@ from tkinter import *
 import math
 root = Tk()
 
-canvas_width = 300
-canvas_height = 300
+canvas_width = 600
+canvas_height = 600
 canvas = Canvas(root, width=canvas_width, height=canvas_height)
 canvas.pack()
 
 # reproduce this:
 # [https://github.com/greenfox-academy/teaching-materials/blob/master/workshop/drawing/triangles/r5.png]
 
-size=10
+size=20
 
 def triangle_height(size):
      return math.sqrt(size**2-(size/2)**2)
