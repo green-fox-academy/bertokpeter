@@ -15,7 +15,7 @@ def black_square(x,y,w):
     if w < 2.5:
         pass
     else:
-        margin = w/240
+        margin = w/120
         canvas.create_rectangle(x+w/3,y+w/3,x+w*2/3,y+w*2/3, outline="", fill="")
         canvas.create_rectangle(x+w/3+margin,y+w/3+margin,x+w*2/3-margin,y+w*2/3-margin, fill="black")
         black_square(x, y, w/3)
