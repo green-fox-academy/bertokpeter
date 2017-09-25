@@ -5,10 +5,19 @@ class Animal(object):
     
     def eat(self):
         self.hunger -= 1
-    
+        return self.hunger
+
     def drink(self):
         self.thirst -= 1
+        return self.thirst
 
     def play(self):
         self.thirst += 1
         self.hunger += 1
+        return self.hunger, self.thirst
+
+giraffe = Animal()
+print(giraffe.hunger)
+print(giraffe.eat())
+print(giraffe.drink())
+print(giraffe.play())
