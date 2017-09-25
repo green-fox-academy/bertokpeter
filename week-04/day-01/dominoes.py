@@ -1,4 +1,5 @@
 from domino import Domino
+import random
 
 def initialize_dominoes():
     dominoes = []
@@ -16,3 +17,16 @@ dominoes = initialize_dominoes()
 # eg: [2, 4], [4, 3], [3, 5] ...
 
 print(dominoes)
+
+def create_snake(dominoes_list):
+    snake = []
+    snake.append(random.sample(dominoes_list, 1)[0])
+    while len(snake) < len(dominoes_list):
+        for domino in dominoes_list:
+            if len(snake) == len(dominoes_list):
+                pass
+            elif domino.values[0] == snake[len(snake)-1].values[1]:
+                snake.append(domino)
+    return snake
+
+print(create_snake(dominoes))
