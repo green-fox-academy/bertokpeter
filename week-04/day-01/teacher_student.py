@@ -15,3 +15,4 @@ class Teacher(object):
 Peti = Student()
 Gyuri = Teacher()
 print(Peti.question(Gyuri))
+print(Gyuri.teach(Peti))
