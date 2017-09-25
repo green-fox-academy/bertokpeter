@@ -38,9 +38,17 @@ class Blog(object):
     def delete(self, number):
         self.blogs.remove(self.blogs[number-1])
 
+    def update(self, number, blogpost):
+        self.blogs[number-1] = blogpost
+
 blog = Blog()
 blog.add("Én", "Lenni", "vagy nem lenni", "2017.09.25.")
-print(blog.blogs[-1].title)
 blog.delete(3)
+blogpost = BlogPost()
+blogpost.author_name = "Mari"
+blogpost.title = "Pletyka"
+blogpost.text = "Elmentek otthonról"
+blogpost.publication_date = "1999.05.04."
+blog.update(2, blogpost)
 for i in blog.blogs:
     print(i.title)
