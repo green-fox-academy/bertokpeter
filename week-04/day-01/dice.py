@@ -33,9 +33,7 @@ print(dice.get_current())
 
 def all_six(dice_list):
     for i in range(len(dice_list.dice)):
-        if dice_list.dice[i] == 6:
-            pass
-        else:
+        if dice_list.dice[i] != 6:
             while dice_list.dice[i] != 6:
                 dice_list.reroll(i)
 
