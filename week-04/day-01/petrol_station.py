@@ -11,3 +11,8 @@ class Car(object):
     def __init__(self):
         self.gas_amount = 0
         self.capacity = 100
+
+Toyota = Car()
+Mol = Station()
+print(Mol.refill(Toyota))
+print(Toyota.gas_amount)
