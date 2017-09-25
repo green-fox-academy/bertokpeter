@@ -25,3 +25,5 @@ superb = PostIt()
 superb.background_color = "yellow"
 superb.text = "Superb!"
 superb.text_color = "green"
+
+print(superb.background_color + ", " + superb.text + ", " + superb.text_color)
