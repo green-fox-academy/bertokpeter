@@ -10,8 +10,9 @@ class AirCraft(object):
             self.base_damage = 50
     
     def fight(self):
-        return self.ammo_store*self.base_damage
+        damage = self.ammo_store*self.base_damage
         self.ammo_store = 0
+        return damage
     
     def refill(self, number):
         fill_amount = self.max_ammo - self.ammo_store
@@ -30,10 +31,10 @@ class AirCraft(object):
 class Carrier(AirCraft):
     def __init__(self, ammo, health):
         self.aircrafts = []
-        self.ammo_store = int(ammo)
+        self.ammo_store = ammo
         self.health = health
 
-    def addAircraft(type):
+    def addAircraft(self, type):
         self.aircrafts.append(AirCraft(type))
 
     def fill_aircrafts(self, type):
@@ -43,8 +44,8 @@ class Carrier(AirCraft):
         return self.ammo_store
 
     def fill(self):
-        if ammo_store = 0:
-            print("Not enough ammo")
+        if self.ammo_store == 0:
+            return "Not enough ammo"
         else:
             self.fill_aircrafts("F35")
             if self.ammo_store > 0:
@@ -55,3 +56,44 @@ class Carrier(AirCraft):
         for aircraft in self.aircrafts:
             self.damage += aircraft.fight()
         carrier.health -= self.damage
+        return carrier.health
+    
+    def total_damage(self):
+        self.damage = 0
+        for aircraft in self.aircrafts:
+            self.damage += aircraft.base_damage*aircraft.ammo_store
+        return self.damage
+
+    def getStatus(self):
+        status = "HP: {}, Aircraft count: {}, Ammo Storage: {}, Total Damage {}\nAircrafts:\n".format(
+            self.health, len(self.aircrafts), self.ammo_store,
+         self.total_damage())
+        for aircraft in self.aircrafts:
+            status += "Type {}, Ammo: {}, Base Damage: {}, All Damage: {}\n".format(aircraft.type,
+             aircraft.ammo_store, aircraft.base_damage, aircraft.ammo_store*aircraft.base_damage)
+        return status
+
+protoss = Carrier(40, 5000)
+DeathStar = Carrier(40, 4000)
+
+protoss.addAircraft("F16")
+protoss.addAircraft("F35")
+protoss.addAircraft("F35")
+protoss.addAircraft("F35")
+protoss.addAircraft("F35")
+DeathStar.addAircraft("F16")
+DeathStar.addAircraft("F16")
+
+print(protoss.ammo_store)
+protoss.fill()
+print(protoss.ammo_store)
+DeathStar.fill()
+print(protoss.aircrafts[0].ammo_store)
+print(protoss.aircrafts[1].ammo_store)
+print(protoss.aircrafts[2].ammo_store)
+print(protoss.fight(DeathStar))
+print(protoss.aircrafts[0].ammo_store)
+print(protoss.aircrafts[1].ammo_store)
+print(protoss.aircrafts[2].ammo_store)
+print(protoss.getStatus())
+print(DeathStar.getStatus())
