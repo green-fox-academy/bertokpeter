@@ -21,6 +21,14 @@ class Garden(object):
         for plant in self.to_water:
             plant.watered(amount/len(self.to_water))
 
+    def __str__(self):
+        result = ""
+        for i in range(len(self.flowers)):
+             result += self.flowers[i].__str__() + "\n"
+        for i in range(len(self.trees)):
+             result += self.trees[i].__str__() + "\n"
+        return result
+
 class Tree(object):
     def __init__(self, color):
         self.water_amount = 0
@@ -46,7 +54,7 @@ class Flower(Tree):
         self.water_amount += amount*7.5    
 
 mygarden = Garden()
-mygarden.add_flower(Flower(yellow))
-mygarden.add_flower(Flower(blue))
-mygarden.add_tree(Tree(purple))
-mygarden.add_tree(Tree(orange))
+mygarden.add_flower(Flower("yellow"))
+mygarden.add_flower(Flower("blue"))
+mygarden.add_tree(Tree("purple"))
+mygarden.add_tree(Tree("orange"))
