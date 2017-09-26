@@ -1,10 +1,11 @@
 class AirCraft(object):
     def __init__(self, type):
         self.ammo_store = 0
-        if type == "F16":
+        self.type = type
+        if self.type == "F16":
             self.max_ammo = 8
             self.base_damage = 30
-        elif type == "F35":
+        elif self.type == "F35":
             self.max_ammo = 12
             self.base_damage = 50
     
@@ -18,3 +19,12 @@ class AirCraft(object):
         if self.ammo_store > self.max_ammo:
             self.ammo_store = self.max_ammo
 
+    def getType(self):
+        return self.type
+
+    def getStatus(self):
+        return "Type: {}, Ammo: {}, Base Damage: {}, All Damage {}".format(self.type, self.ammo_store,
+        self.base_damage,self.base_damage*self.ammo_store)
+
+class Carrier(object):
+    
