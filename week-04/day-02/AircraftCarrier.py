@@ -30,24 +30,28 @@ class AirCraft(object):
 class Carrier(AirCraft):
     def __init__(self, ammo, health):
         self.aircrafts = []
-        self.ammo_store = ammo
+        self.ammo_store = int(ammo)
         self.health = health
 
     def addAircraft(type):
         self.aircrafts.append(AirCraft(type))
 
+    def fill_aircrafts(self, type):
+        for aircraft in self.aircrafts:
+                if aircraft.getType() == type:
+                    self.ammo_store = aircraft.refill(self.ammo_store)
+        return self.ammo_store
+
     def fill(self):
         if ammo_store = 0:
-            print("Not enoug ammo")
+            print("Not enough ammo")
         else:
-            for aircraft in self.aircrafts:
-                if aircraft.getType() == "F35":
-                    new_ammo = aircraft.refill(self.ammo_store)
-                    self.ammo_store = new_ammo 
+            self.fill_aircrafts("F35")
             if self.ammo_store > 0:
-                for aircraft in self.aircrafts:
-                    if aircraft.getType() == "F16":
-                        new_ammo = aircraft.refill(self.ammo_store)
-                        self.ammo_store = new_ammo
+                self.fill_aircrafts("F16")
     
-    def fight
+    def fight(self, carrier):
+        self.damage = 0
+        for aircraft in self.aircrafts:
+            self.damage += aircraft.fight()
+        carrier.health -= self.damage
