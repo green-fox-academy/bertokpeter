@@ -26,5 +26,11 @@ class AirCraft(object):
         return "Type: {}, Ammo: {}, Base Damage: {}, All Damage {}".format(self.type, self.ammo_store,
         self.base_damage,self.base_damage*self.ammo_store)
 
-class Carrier(object):
-    
+class Carrier(AirCraft):
+    def __init__(self, ammo, health):
+        self.aircrafts = []
+        self.ammo_store = ammo
+        self.health = health
+
+    def addAircraft(type):
+        self.aircrafts.append(AirCraft(type))
