@@ -77,8 +77,7 @@ class Carrier(AirCraft):
     def getStatus(self):
         if self.health > 0:
             status = "HP: {}, Aircraft count: {}, Ammo Storage: {}, Total Damage {}\nAircrafts:\n".format(
-                self.health, len(self.aircrafts), self.ammo_store,
-            self.total_damage())
+                self.health, len(self.aircrafts), self.ammo_store, self.total_damage())
             for aircraft in self.aircrafts:
                 status += "Type {}, Ammo: {}, Base Damage: {}, All Damage: {}\n".format(aircraft.type,
                 aircraft.ammo_store, aircraft.base_damage, aircraft.ammo_store*aircraft.base_damage)
