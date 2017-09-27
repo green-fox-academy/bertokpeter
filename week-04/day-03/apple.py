@@ -1,4 +1,4 @@
 class Apples(object):
 
-    def get_apple(self):
-        return "apple"
+    def get_apple(self, word="apple"):
+        return word
