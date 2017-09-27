@@ -1,2 +1,5 @@
 def count_letters(word):
-    return {word: 1}
+    letters = {}
+    for i in word:
+        letters[i] = 1
+    return letters
