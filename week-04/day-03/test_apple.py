@@ -9,7 +9,7 @@ class TestApples(unittest.TestCase):
         self.assertEqual(apple.get_apple(),"apple")
     
     def test_not_apple(self):
-        self.assertEqual(apple.get_apple(),"monkey")
+        self.assertEqual(apple.get_apple("monkey"),"monkey")
 
 if __name__=="__main__":
     unittest.main()
