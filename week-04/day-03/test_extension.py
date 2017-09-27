@@ -44,11 +44,17 @@ class TestExtend(unittest.TestCase):
     def test_is_vovel_u(self):
         self.assertTrue(is_vovel('u'))
 
+    def test_is_vovel_ú(self):
+        self.assertTrue(is_vovel('ú'))
+
     def test_translate_bemutatkozik(self):
         self.assertEqual(translate('bemutatkozik'), 'bevemuvutavatkovozivik')
 
     def test_translate_kolbice(self):
         self.assertEqual(translate('kolbice'), 'kovolbiviceve')
+
+    def test_translate_makaroni(self):
+        self.assertEqual(translate('makaróni'), 'mavakavaróvónivi')
 
 if __name__ == '__main__':
     unittest.main()
