@@ -1,11 +1,15 @@
 import unittest
-from bertok_peter_work import Apples
+from apple import Apples
 
-class TestApples(unittest.TestCase):
+apple = Apples()
+
+class TestApples(unittest.TestCase):        
     
-    def test_apples(self):
-        apple = Apples()
+    def test_apple(self):
         self.assertEqual(apple.get_apple(),"apple")
+    
+    def test_not_apple(self):
+        self.assertEqual(apple.get_apple(),"monkey")
 
 if __name__=="__main__":
     unittest.main()
