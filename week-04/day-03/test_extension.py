@@ -26,11 +26,17 @@ class TestExtend(unittest.TestCase):
     def test_max_of_three_third(self):
         self.assertEqual(max_of_three(3, 4, 5), 5)
 
+    def test_max_of_three_second(self):
+        self.assertEqual(max_of_three(3, 5, 4), 5)
+
     def test_median_four(self):
-        self.assertEqual(median([7,5,3,5]), 5)
+        self.assertEqual(median([7,4,3,5]), 4.5)
 
     def test_median_five(self):
         self.assertEqual(median([1,2,3,4,5]), 3)
+
+    def test_median_five_scrambled(self):
+        self.assertEqual(median([5,2,4,1,3]), 3)
 
     def test_is_vovel_a(self):
         self.assertTrue(is_vovel('a'))
