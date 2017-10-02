@@ -8,7 +8,10 @@ class View:
         self.canvas = Canvas(self.root, width=self.size, height=self.size-72, bg="white", bd=0)
         self.floor_image = PhotoImage(file = "floor.png")
         self.wall_image = PhotoImage(file = "wall.png")
-        self.hero_image = PhotoImage(file = "hero-down.png")
+        self.hero_down = PhotoImage(file = "hero-down.png")
+        self.hero_up = PhotoImage(file = "hero-up.png")
+        self.hero_right = PhotoImage(file = "hero-right.png")
+        self.hero_left = PhotoImage(file = "hero-left.png")
         self.root.bind("<KeyPress>", self.on_key_press)
         self.canvas.pack()
         self.canvas.focus_set()    
@@ -21,8 +24,8 @@ class View:
     
     def draw_entity(self, image, x, y):
         if image == "hero":
-            image = self.hero_image
-        self.hero = self.canvas.create_image(x*72, y*72, anchor=NW, image=image)
+            image = self.hero_down
+        self.entity = self.canvas.create_image(x*72, y*72, anchor=NW, image=image)
     
     def move(self, char, dx, dy):
         for i in range(10):
@@ -31,14 +34,20 @@ class View:
             self.canvas.move(char, dx*7.2, dy*7.2)
     
     def on_key_press(self, e):
+        coords = self.canvas.coords(self.entity)
+        self.canvas.delete(self.entity)
         if e.keysym == 'Up':
-            self.move(self.hero, 0, -1)
+            self.entity = self.canvas.create_image(coords[0], coords[1], anchor=NW, image=self.hero_up)
+            self.move(self.entity, 0, -1)
         elif e.keysym == 'Down':
-            self.move(self.hero, 0, 1)
+            self.entity = self.canvas.create_image(coords[0], coords[1], anchor=NW, image=self.hero_down)
+            self.move(self.entity, 0, 1)
         elif e.keysym == 'Right':
-            self.move(self.hero, 1, 0)
+            self.entity = self.canvas.create_image(coords[0], coords[1], anchor=NW, image=self.hero_right)
+            self.move(self.entity, 1, 0)
         elif e.keysym == 'Left':
-            self.move(self.hero, -1, 0)
+            self.entity = self.canvas.create_image(coords[0], coords[1], anchor=NW, image=self.hero_left)
+            self.move(self.entity, -1, 0)
 
     def display(self):
         self.root.mainloop()
