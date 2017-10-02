@@ -6,6 +6,7 @@ class Game:
         self.mymap = Map()
         self.myview = View()
         self.myview.draw_map(self.mymap.tiles)
+        self.myview.draw_entity("hero", 0, 0)
         self.myview.display()
 
 game = Game()
