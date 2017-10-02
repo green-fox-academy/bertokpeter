@@ -23,13 +23,19 @@ class View:
                 self.level = self.canvas.create_image(j*72, i*72, anchor=NW, image=image)
     
     def draw_entity(self, image, x, y):
-        if image == "hero":
+        if image == "down":
             image = self.hero_down
-        self.entity = self.canvas.create_image(x*72, y*72, anchor=NW, image=image)
+        elif image == "up":
+            image = self.hero_up
+        elif image == "right":
+            image = self.hero_right
+        elif image == "left":
+            image = self.hero_left
+        self.entity = self.canvas.create_image(x, y, anchor=NW, image=image)
     
     def move(self, char, dx, dy):
         for i in range(10):
-            time.sleep(0.05)
+            time.sleep(0.005)
             self.canvas.update()
             self.canvas.move(char, dx*7.2, dy*7.2)
     
@@ -37,17 +43,21 @@ class View:
         coords = self.canvas.coords(self.entity)
         self.canvas.delete(self.entity)
         if e.keysym == 'Up':
-            self.entity = self.canvas.create_image(coords[0], coords[1], anchor=NW, image=self.hero_up)
-            self.move(self.entity, 0, -1)
+            self.draw_entity("up",coords[0], coords[1])
+            if coords[1] > 71.9:
+                self.move(self.entity, 0, -1)
         elif e.keysym == 'Down':
-            self.entity = self.canvas.create_image(coords[0], coords[1], anchor=NW, image=self.hero_down)
-            self.move(self.entity, 0, 1)
+            self.draw_entity("down",coords[0], coords[1])
+            if coords[1] < 504.1:
+                self.move(self.entity, 0, 1)
         elif e.keysym == 'Right':
-            self.entity = self.canvas.create_image(coords[0], coords[1], anchor=NW, image=self.hero_right)
-            self.move(self.entity, 1, 0)
+            self.draw_entity("right",coords[0], coords[1])
+            if coords[0] < 576.1:
+                self.move(self.entity, 1, 0)
         elif e.keysym == 'Left':
-            self.entity = self.canvas.create_image(coords[0], coords[1], anchor=NW, image=self.hero_left)
-            self.move(self.entity, -1, 0)
+            self.draw_entity("left",coords[0], coords[1])
+            if coords[0] > 71.9:
+                self.move(self.entity, -1, 0)
 
     def display(self):
         self.root.mainloop()
