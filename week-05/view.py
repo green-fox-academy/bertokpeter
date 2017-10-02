@@ -1,8 +1,10 @@
 from tkinter import *
 import time
+from map import Map
 
 class View:
     def __init__(self):
+        self.mymap = Map()
         self.root = Tk()
         self.size = 720
         self.canvas = Canvas(self.root, width=self.size, height=self.size-72, bg="white", bd=0)
@@ -34,29 +36,29 @@ class View:
         self.entity = self.canvas.create_image(x, y, anchor=NW, image=image)
     
     def move(self, char, dx, dy):
-        for i in range(10):
-            time.sleep(0.005)
-            self.canvas.update()
-            self.canvas.move(char, dx*7.2, dy*7.2)
-    
+        # for i in range(10):
+        #     time.sleep(0.005)
+        #     self.canvas.update()
+        self.canvas.move(char, dx*72, dy*72)
+
     def on_key_press(self, e):
         coords = self.canvas.coords(self.entity)
         self.canvas.delete(self.entity)
         if e.keysym == 'Up':
             self.draw_entity("up",coords[0], coords[1])
-            if coords[1] > 71.9:
+            if coords[1] > 71.9 and not self.mymap.get_cell(coords[0],coords[1]-72) == 1:
                 self.move(self.entity, 0, -1)
         elif e.keysym == 'Down':
             self.draw_entity("down",coords[0], coords[1])
-            if coords[1] < 504.1:
+            if coords[1] < 504.1 and not self.mymap.get_cell(coords[0],coords[1]+72) == 1:
                 self.move(self.entity, 0, 1)
         elif e.keysym == 'Right':
             self.draw_entity("right",coords[0], coords[1])
-            if coords[0] < 576.1:
+            if coords[0] < 576.1 and not self.mymap.get_cell(coords[0]+72,coords[1]) == 1:
                 self.move(self.entity, 1, 0)
         elif e.keysym == 'Left':
             self.draw_entity("left",coords[0], coords[1])
-            if coords[0] > 71.9:
+            if coords[0] > 71.9 and not self.mymap.get_cell(coords[0]-72,coords[1]) == 1:
                 self.move(self.entity, -1, 0)
 
     def display(self):
