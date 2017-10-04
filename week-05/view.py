@@ -36,14 +36,20 @@ class View:
         self.chars_on_screen.append(self.hero)
 
     def draw_skeletons(self):
-        rand_coords = []
-        for i in range(6):
-            rand_coords.append(random.randint(0,9))
+        while 
+        rand_coord = random.randint(0,10)
         self.skeleton1 = self.draw_entity(self.skeleton_image, rand_coords[0], rand_coords[1])
         self.skeleton2 = self.draw_entity(self.skeleton_image, rand_coords[2], rand_coords[3])
         self.skeleton3 = self.draw_entity(self.skeleton_image, rand_coords[4], rand_coords[5])
         self.chars_on_screen.append(self.skeleton1)
-
+    
+    def is_occupied(self, x, y):
+        for image in self.chars_on_screen:
+            coords = self.canvas.coords(image)
+            its_occupied = coords[0] == x and coords[1] == y
+            if its_occupied:
+                break
+        return its_occupied
 
     def move(self, char, dx, dy):
         self.canvas.move(char, dx*72, dy*72)
