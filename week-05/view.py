@@ -27,22 +27,27 @@ class View:
                 image = self.floor_image if map[i][j]==0 else self.wall_image
                 self.tile = self.canvas.create_image(j*72, i*72, anchor=NW, image=image)
     
-    def draw_entity(self, image, x, y):
-        self.entity = self.canvas.create_image(x*72, y*72, anchor=NW, image=image)
+    def draw_entity(self, image, coords):
+        self.entity = self.canvas.create_image(coords[0]*72, coords[1]*72, anchor=NW, image=image)
         return self.entity
     
     def draw_hero(self, image, x, y):
-        self.hero = self.draw_entity(image, x, y)
+        self.hero = self.draw_entity(image, [x, y])
         self.chars_on_screen.append(self.hero)
 
     def draw_skeletons(self):
-        while 
-        rand_coord = random.randint(0,10)
-        self.skeleton1 = self.draw_entity(self.skeleton_image, rand_coords[0], rand_coords[1])
-        self.skeleton2 = self.draw_entity(self.skeleton_image, rand_coords[2], rand_coords[3])
-        self.skeleton3 = self.draw_entity(self.skeleton_image, rand_coords[4], rand_coords[5])
-        self.chars_on_screen.append(self.skeleton1)
+        self.skeleton1 = self.draw_entity(self.skeleton_image, self.rand_gen())
+        self.skeleton2 = self.draw_entity(self.skeleton_image, self.rand_gen())
+        self.skeleton3 = self.draw_entity(self.skeleton_image, self.rand_gen())
+        self.chars_on_screen.extend([self.skeleton1, self.skeleton2,self.skeleton3])
     
+    def rand_gen(self):
+        coords = [0, 0]
+        while self.is_occupied(coords[0],coords[1]) or self.mymap.get_cell(coords[0],coords[1]) == 1:
+            coords[0] = random.randint(0,9)
+            coords[1] = random.randint(0,8)
+        return coords
+        
     def is_occupied(self, x, y):
         for image in self.chars_on_screen:
             coords = self.canvas.coords(image)
