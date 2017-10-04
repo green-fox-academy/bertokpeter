@@ -8,6 +8,7 @@ class Game:
         self.myview.draw_map(self.mymap.tiles)
         self.myview.draw_hero(self.myview.hero_down, 0, 0)
         self.myview.draw_skeletons()
+        self.myview.draw_boss()
         self.myview.display()
 
 game = Game()
