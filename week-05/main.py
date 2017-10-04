@@ -1,17 +1,20 @@
 from view import View
 from map import Map
+from entity import *
 import random
 
 class Game:
     def __init__(self):
         self.mymap = Map()
         self.myview = View()
+        self.myhero = Hero()
         self.myview.root.bind("<KeyPress>", self.on_key_press)
         self.myview.draw_map(self.mymap.tiles)
         self.chars_on_screen = []
         self.draw_hero(self.myview.hero_down, 0, 0)
         self.draw_skeletons()
         self.draw_boss()
+        self.myview.draw_hud(self.myhero.level,self.myhero.maxhp,self.myhero.currenthp,self.myhero.sp,self.myhero.dp)
         self.myview.display()
     
     def draw_hero(self, image, x, y):
