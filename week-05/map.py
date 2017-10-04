@@ -11,6 +11,6 @@ class Map:
                       [0,0,0,1,0,0,1,1,1,0]]
     
     def get_cell(self,x,y):
-        x = int(x/72)
-        y = int(y/72) 
+        x = int(x)
+        y = int(y) 
         return self.tiles[y][x]
