@@ -11,6 +11,10 @@ class View:
         self.hero_up = PhotoImage(file = "hero-up.png")
         self.hero_right = PhotoImage(file = "hero-right.png")
         self.hero_left = PhotoImage(file = "hero-left.png")
+        self.hero_images = {"down": self.hero_down,
+                            "up": self.hero_up,
+                            "right": self.hero_right,
+                            "left": self.hero_left}
         self.skeleton_image = PhotoImage(file = "skeleton.png")
         self.boss_image = PhotoImage(file= "boss.png")
         self.canvas.pack()
@@ -25,6 +29,6 @@ class View:
     def draw_entity(self, image, coords):
         self.entity = self.canvas.create_image(coords[0]*72, coords[1]*72, anchor=NW, image=image)
         return self.entity      
-    
+
     def display(self):
         self.root.mainloop()
