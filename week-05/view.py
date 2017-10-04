@@ -16,6 +16,7 @@ class View:
         self.hero_right = PhotoImage(file = "hero-right.png")
         self.hero_left = PhotoImage(file = "hero-left.png")
         self.skeleton_image = PhotoImage(file = "skeleton.png")
+        self.boss_image = PhotoImage(file= "boss.png")
         self.chars_on_screen = []
         self.root.bind("<KeyPress>", self.on_key_press)
         self.canvas.pack()
@@ -40,6 +41,10 @@ class View:
         self.skeleton2 = self.draw_entity(self.skeleton_image, self.rand_gen())
         self.skeleton3 = self.draw_entity(self.skeleton_image, self.rand_gen())
         self.chars_on_screen.extend([self.skeleton1, self.skeleton2,self.skeleton3])
+
+    def draw_boss(self):
+        self.boss = self.draw_entity(self.boss_image, self.rand_gen())
+        self.chars_on_screen.append(self.boss)        
     
     def rand_gen(self):
         coords = [0, 0]
