@@ -45,25 +45,28 @@ class Game:
 
     def move(self, char, dx, dy):
          self.myview.canvas.move(char, dx*72, dy*72)
+    
+    def turn_hero(self, image):
+        self.myview.canvas.itemconfig(self.hero, image=self.myview.hero_images[image])
 
     def on_key_press(self, e):
         coords = self.myview.canvas.coords(self.hero)
         coords[0] = coords[0]//72
         coords[1] = coords[1]//72
         if e.keysym == 'Up':
-            self.myview.canvas.itemconfig(self.hero, image=self.myview.hero_up)
+            self.turn_hero("up")
             if coords[1] >= 1 and not self.mymap.get_cell(coords[0],coords[1]-1) == 1:
                 self.move(self.hero, 0, -1)
         elif e.keysym == 'Down':
-            self.myview.canvas.itemconfig(self.hero, image=self.myview.hero_down)
+            self.turn_hero("down")
             if coords[1] <= 7 and not self.mymap.get_cell(coords[0],coords[1]+1) == 1:
                 self.move(self.hero, 0, 1)
         elif e.keysym == 'Right':
-            self.myview.canvas.itemconfig(self.hero, image=self.myview.hero_right)
+            self.turn_hero("right")
             if coords[0] <= 8 and not self.mymap.get_cell(coords[0]+1,coords[1]) == 1:
                 self.move(self.hero, 1, 0)
         elif e.keysym == 'Left':
-            self.myview.canvas.itemconfig(self.hero, image=self.myview.hero_left)
+            self.turn_hero("left")
             if coords[0] >= 1 and not self.mymap.get_cell(coords[0]-1,coords[1]) == 1:
                 self.move(self.hero, -1, 0)
 
