@@ -4,7 +4,7 @@ class View:
     def __init__(self):
         self.root = Tk()
         self.size = 720
-        self.canvas = Canvas(self.root, width=self.size, height=self.size-72, bg="white", bd=0)
+        self.canvas = Canvas(self.root, width=self.size, height=self.size, bg="white", bd=0)
         self.floor_image = PhotoImage(file = "floor.png")
         self.wall_image = PhotoImage(file = "wall.png")
         self.hero_down = PhotoImage(file = "hero-down.png")
@@ -29,6 +29,11 @@ class View:
     def draw_entity(self, image, coords):
         self.entity = self.canvas.create_image(coords[0]*72, coords[1]*72, anchor=NW, image=image)
         return self.entity      
+    
+    def draw_hud(self,level,max,hp,sp,dp):
+        text = ("Hero (Level " + str(level) + ") HP: " + str(hp) + "/" + str(max) +
+                " | DP: " + str(dp) + " | SP: " + str(sp))
+        self.canvas.create_text(5,650, anchor=NW, font=24, text=text)    
 
     def display(self):
         self.root.mainloop()
