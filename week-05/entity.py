@@ -8,6 +8,7 @@ class Entity:
         self.currenthp = self.maxhp
         self.sp = 0
         self.dp = 0
+        self.status = "peace"
 
     def get_stats(self):
         self.stats = {"level":self.level,
