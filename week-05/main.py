@@ -8,6 +8,7 @@ class Game:
     def __init__(self):
         self.mymap = Map()
         self.myview = View()
+        self.logic = Logic()
         self.myview.root.bind("<KeyPress>", self.on_key_press)
         self.myview.draw_map(self.mymap.tiles)
         self.chars_on_screen = []
@@ -49,17 +50,24 @@ class Game:
     def is_someone_here(self):
         coords = self.myhero.get_coords(self.myview.canvas.coords(self.myhero.picture))
         if self.is_occupied(self.chars_on_screen[1:], coords[0], coords[1]):
-            self.myhero.status = "in combat"
             for char in self.chars_on_screen[1:]:
                 coords2 = char.get_coords(self.myview.canvas.coords(char.picture))
                 if coords[0] == coords2[0] and coords[1] == coords2[1]:
-                    self.myview.draw_stats(char.name, char.stats)
-                    char.status = "in combat"
+                    if self.myhero.status == "peace":
+                        self.myhero.status = "in combat"
+                        self.myview.draw_stats(char.name, char.stats)
+                    else:
+                        self.logic.battle(self.myhero, char)
+                        self.myhero.get_stats()
+                        char.get_stats()  
+                        self.myview.draw_stats(self.myhero.name, self.myhero.stats)
+                        self.myview.draw_stats(char.name, char.stats)
+
 
     def on_key_press(self, e):
-        self.myview.delete_stats()
-        self.myview.draw_stats(self.myhero.name, self.myhero.stats)
         if self.myhero.status == "peace":
+            self.myview.delete_stats()
+            self.myview.draw_stats(self.myhero.name, self.myhero.stats)
             coords = self.myhero.get_coords(self.myview.canvas.coords(self.myhero.picture))
             if e.keysym == 'Up':
                 self.turn_hero("up")
@@ -78,5 +86,9 @@ class Game:
                 if coords[0] >= 1 and not self.mymap.get_cell(coords[0]-1,coords[1]) == 1:
                     self.move(self.myhero.picture, -1, 0)
             self.is_someone_here()
-
+        else:
+            if e.keysym == 'space':
+                self.myview.delete_stats()
+                self.is_someone_here()
+                
 game = Game()
