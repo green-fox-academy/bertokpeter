@@ -72,7 +72,6 @@ class Game:
             self.turn_hero("left")
             if coords[0] >= 1 and not self.mymap.get_cell(coords[0]-1,coords[1]) == 1:
                 self.move(self.myhero.picture, -1, 0)
-        
-        
+        self.draw_enemy_stats()
 
 game = Game()
