@@ -1,6 +1,7 @@
 from view import View
 from map import Map
 from entity import *
+from game_logic import Logic
 import random
 
 class Game:
@@ -45,34 +46,37 @@ class Game:
     def turn_hero(self, image):
         self.myview.canvas.itemconfig(self.myhero.picture, image=self.myview.hero_images[image])
 
-    def draw_enemy_stats(self):
+    def is_someone_here(self):
         coords = self.myhero.get_coords(self.myview.canvas.coords(self.myhero.picture))
         if self.is_occupied(self.chars_on_screen[1:], coords[0], coords[1]):
+            self.myhero.status = "in combat"
             for char in self.chars_on_screen[1:]:
                 coords2 = char.get_coords(self.myview.canvas.coords(char.picture))
                 if coords[0] == coords2[0] and coords[1] == coords2[1]:
                     self.myview.draw_stats(char.name, char.stats)
+                    char.status = "in combat"
 
     def on_key_press(self, e):
         self.myview.delete_stats()
         self.myview.draw_stats(self.myhero.name, self.myhero.stats)
-        coords = self.myhero.get_coords(self.myview.canvas.coords(self.myhero.picture))
-        if e.keysym == 'Up':
-            self.turn_hero("up")
-            if coords[1] >= 1 and not self.mymap.get_cell(coords[0],coords[1]-1) == 1:
-                self.move(self.myhero.picture, 0, -1)
-        elif e.keysym == 'Down':
-            self.turn_hero("down")
-            if coords[1] <= 7 and not self.mymap.get_cell(coords[0],coords[1]+1) == 1:
-                self.move(self.myhero.picture, 0, 1)
-        elif e.keysym == 'Right':
-            self.turn_hero("right")
-            if coords[0] <= 8 and not self.mymap.get_cell(coords[0]+1,coords[1]) == 1:
-                self.move(self.myhero.picture, 1, 0)
-        elif e.keysym == 'Left':
-            self.turn_hero("left")
-            if coords[0] >= 1 and not self.mymap.get_cell(coords[0]-1,coords[1]) == 1:
-                self.move(self.myhero.picture, -1, 0)
-        self.draw_enemy_stats()
+        if self.myhero.status == "peace":
+            coords = self.myhero.get_coords(self.myview.canvas.coords(self.myhero.picture))
+            if e.keysym == 'Up':
+                self.turn_hero("up")
+                if coords[1] >= 1 and not self.mymap.get_cell(coords[0],coords[1]-1) == 1:
+                    self.move(self.myhero.picture, 0, -1)
+            elif e.keysym == 'Down':
+                self.turn_hero("down")
+                if coords[1] <= 7 and not self.mymap.get_cell(coords[0],coords[1]+1) == 1:
+                    self.move(self.myhero.picture, 0, 1)
+            elif e.keysym == 'Right':
+                self.turn_hero("right")
+                if coords[0] <= 8 and not self.mymap.get_cell(coords[0]+1,coords[1]) == 1:
+                    self.move(self.myhero.picture, 1, 0)
+            elif e.keysym == 'Left':
+                self.turn_hero("left")
+                if coords[0] >= 1 and not self.mymap.get_cell(coords[0]-1,coords[1]) == 1:
+                    self.move(self.myhero.picture, -1, 0)
+            self.is_someone_here()
 
 game = Game()
