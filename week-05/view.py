@@ -31,8 +31,8 @@ class View:
         return self.entity      
     
     def draw_stats(self, char, stats):
-        text = (char + " (Level " + str(stats["level"]) + ") HP: " + str(stats["currenthp"]) + "/"
-                + str(stats["maxhp"]) + " | DP: " + str(stats["dp"]) + " | SP: " + str(stats["sp"]))
+        text = ("{} (Level {}) HP: {}/{}| DP: {}| SP: {}".format(char,stats["level"],stats["currenthp"], stats["maxhp"],
+                stats["dp"],stats["sp"]))
         if char == "Hero":
             self.canvas.create_text(5,650, anchor=NW, font=24, tag="hero_stats", text=text)
         else:
