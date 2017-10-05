@@ -58,15 +58,19 @@ class Game:
     
     def fight(self, char):
         self.logic.battle(self.myhero, char)
-        self.myhero.get_stats()
-        self.myview.draw_stats(self.myhero.name, self.myhero.stats)
-        if not char.status == "dead":
-            char.get_stats()  
-            self.myview.draw_stats(char.name, char.stats)
-        elif char.status == "dead": 
-            self.myview.death(char)
-            self.chars_on_screen.remove(char)
-            self.myhero.status = "peace"
+        if self.myhero.status == "dead":
+            self.myview.death(self.myhero)
+            self.myview.game_over()
+        else:
+            self.myhero.get_stats()
+            self.myview.draw_stats(self.myhero.name, self.myhero.stats)
+            if not char.status == "dead":
+                char.get_stats()  
+                self.myview.draw_stats(char.name, char.stats)
+            elif char.status == "dead": 
+                self.myview.death(char)
+                self.chars_on_screen.remove(char)
+                self.myhero.status = "peace"
 
     def on_key_press(self, e):
         if self.myhero.status == "peace":
@@ -92,9 +96,12 @@ class Game:
             if len(self.chars_on_screen) > 1:
                 if self.who_is_here():
                     self.myview.draw_stats(self.who_is_here().name, self.who_is_here().stats)
-        else:
+        elif self.myhero.status == "in combat":
             if e.keysym == 'space':
                 self.myview.delete_stats()
                 self.fight(self.who_is_here())
-                
+        else:
+            if e.keysym == 'x':
+                self.myview.quit_app()
+
 game = Game()
