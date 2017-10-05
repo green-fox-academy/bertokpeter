@@ -45,7 +45,16 @@ class Game:
     def turn_hero(self, image):
         self.myview.canvas.itemconfig(self.myhero.picture, image=self.myview.hero_images[image])
 
+    def draw_enemy_stats(self):
+        coords = self.myhero.get_coords(self.myview.canvas.coords(self.myhero.picture))
+        if self.is_occupied(self.chars_on_screen[1:], coords[0], coords[1]):
+            for char in self.chars_on_screen[1:]:
+                coords2 = char.get_coords(self.myview.canvas.coords(char.picture))
+                if coords[0] == coords2[0] and coords[1] == coords2[1]:
+                    self.myview.draw_stats(char.name, char.stats)
+
     def on_key_press(self, e):
+        self.myview.delete_stats()
         coords = self.myhero.get_coords(self.myview.canvas.coords(self.myhero.picture))
         if e.keysym == 'Up':
             self.turn_hero("up")
@@ -63,8 +72,7 @@ class Game:
             self.turn_hero("left")
             if coords[0] >= 1 and not self.mymap.get_cell(coords[0]-1,coords[1]) == 1:
                 self.move(self.myhero.picture, -1, 0)
-        coords = self.myhero.get_coords(self.myview.canvas.coords(self.myhero.picture))
-        if self.is_occupied(self.chars_on_screen[1:], coords[0], coords[1]):
-           self.myview.draw_stats(self.skeleton1.name,self.skeleton1.stats)
+        
+        
 
 game = Game()
