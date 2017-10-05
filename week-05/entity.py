@@ -48,9 +48,9 @@ class Skeleton(Entity):
 class Boss(Entity):
     def __init__(self, drawing):
         super().__init__(drawing)
-        self.maxhp = 2*self.level*self.dice() + self.dice()
+        self.maxhp = 3*self.level*self.dice() + self.dice()
         self.currenthp = self.maxhp
-        self.sp = self.level/2*self.dice() + self.dice()/2
+        self.sp = self.level*self.dice() + self.dice()/2
         self.dp = self.level*self.dice() + self.level
         self.name = "Boss"
         self.get_stats()
