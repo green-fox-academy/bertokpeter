@@ -47,26 +47,26 @@ class Game:
     def turn_hero(self, image):
         self.myview.canvas.itemconfig(self.myhero.picture, image=self.myview.hero_images[image])
 
-    def is_someone_here(self):
+    def who_is_here(self):
         coords = self.myhero.get_coords(self.myview.canvas.coords(self.myhero.picture))
         if self.is_occupied(self.chars_on_screen[1:], coords[0], coords[1]):
             for char in self.chars_on_screen[1:]:
                 coords2 = char.get_coords(self.myview.canvas.coords(char.picture))
                 if coords[0] == coords2[0] and coords[1] == coords2[1]:
-                    if self.myhero.status == "peace":
-                        self.myhero.status = "in combat"
-                        self.myview.draw_stats(char.name, char.stats)
-                    else:
-                        self.logic.battle(self.myhero, char)
-                        self.myhero.get_stats()
-                        self.myview.draw_stats(self.myhero.name, self.myhero.stats)
-                        if not char.status == "dead":
-                            char.get_stats()  
-                            self.myview.draw_stats(char.name, char.stats)
-                        elif char.status == "dead": 
-                            self.myview.death(char)
-                            self.chars_on_screen.remove(char)
-                            self.myhero.status = "peace"
+                    self.myhero.status = "in combat"
+                    return char
+    
+    def fight(self, char):
+        self.logic.battle(self.myhero, char)
+        self.myhero.get_stats()
+        self.myview.draw_stats(self.myhero.name, self.myhero.stats)
+        if not char.status == "dead":
+            char.get_stats()  
+            self.myview.draw_stats(char.name, char.stats)
+        elif char.status == "dead": 
+            self.myview.death(char)
+            self.chars_on_screen.remove(char)
+            self.myhero.status = "peace"
 
     def on_key_press(self, e):
         if self.myhero.status == "peace":
@@ -90,10 +90,11 @@ class Game:
                 if coords[0] >= 1 and not self.mymap.get_cell(coords[0]-1,coords[1]) == 1:
                     self.move(self.myhero.picture, -1, 0)
             if len(self.chars_on_screen) > 1:
-                self.is_someone_here()
+                if self.who_is_here():
+                    self.myview.draw_stats(self.who_is_here().name, self.who_is_here().stats)
         else:
             if e.keysym == 'space':
                 self.myview.delete_stats()
-                self.is_someone_here()
+                self.fight(self.who_is_here())
                 
 game = Game()
