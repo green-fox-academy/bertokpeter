@@ -37,6 +37,14 @@ class View:
             self.canvas.create_text(5,650, anchor=NW, font=24, tag="hero_stats", text=text)
         else:
             self.canvas.create_text(715,650, anchor=NE, font=24, tag="monster_stats", text=text)
+
+    def game_over(self):
+        self.delete_stats()
+        self.canvas.create_text(360,660, font=56, text="GAME OVER")
+        self.canvas.create_text(360,680, font=56, text="Press 'x' to quit")
+
+    def quit_app(self):
+        self.root.destroy()
     
     def delete_stats(self):
         self.canvas.delete("monster_stats")
