@@ -36,6 +36,13 @@ class Hero(Entity):
         self.name = "Hero"
         self.get_stats()
 
+    def level_up(self):
+        self.level += 1
+        self.maxhp += self.dice()
+        self.currenthp = self.maxhp
+        self.sp += self.dice()
+        self.dp += self.dice()
+
 class Skeleton(Entity):
     def __init__(self, drawing):
         super().__init__(drawing)
@@ -49,7 +56,7 @@ class Skeleton(Entity):
 class Boss(Entity):
     def __init__(self, drawing):
         super().__init__(drawing)
-        self.maxhp = 3*self.level*self.dice() + self.dice()
+        self.maxhp = 1000 + 3*self.level*self.dice() + self.dice()
         self.currenthp = self.maxhp
         self.sp = self.level*self.dice() + self.dice()/2
         self.dp = self.level*self.dice() + self.level
