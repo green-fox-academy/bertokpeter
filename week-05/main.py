@@ -55,6 +55,7 @@ class Game:
 
     def on_key_press(self, e):
         self.myview.delete_stats()
+        self.myview.draw_stats(self.myhero.name, self.myhero.stats)
         coords = self.myhero.get_coords(self.myview.canvas.coords(self.myhero.picture))
         if e.keysym == 'Up':
             self.turn_hero("up")
