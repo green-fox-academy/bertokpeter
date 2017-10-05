@@ -41,6 +41,9 @@ class View:
     def delete_stats(self):
         self.canvas.delete("monster_stats")
         self.canvas.delete("hero_stats")
+
+    def death(self, char):
+        self.canvas.delete(char.picture)
     
     def display(self):
         self.root.mainloop()
