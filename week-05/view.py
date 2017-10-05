@@ -30,10 +30,13 @@ class View:
         self.entity = self.canvas.create_image(coords[0]*72, coords[1]*72, anchor=NW, image=image)
         return self.entity      
     
-    def draw_hud(self,level,max,hp,sp,dp):
-        text = ("Hero (Level " + str(level) + ") HP: " + str(hp) + "/" + str(max) +
-                " | DP: " + str(dp) + " | SP: " + str(sp))
-        self.canvas.create_text(5,650, anchor=NW, font=24, text=text)    
-
+    def draw_stats(self, char, stats):
+        text = (char + " (Level " + str(stats["level"]) + ") HP: " + str(stats["currenthp"]) + "/"
+                + str(stats["maxhp"]) + " | DP: " + str(stats["dp"]) + " | SP: " + str(stats["sp"]))
+        if char == "Hero":
+            self.canvas.create_text(5,650, anchor=NW, font=24, text=text)
+        else:
+            self.canvas.create_text(715,650, anchor=NE, font=24, text=text)
+        
     def display(self):
         self.root.mainloop()
