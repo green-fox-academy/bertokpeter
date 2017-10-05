@@ -59,10 +59,14 @@ class Game:
                     else:
                         self.logic.battle(self.myhero, char)
                         self.myhero.get_stats()
-                        char.get_stats()  
                         self.myview.draw_stats(self.myhero.name, self.myhero.stats)
-                        self.myview.draw_stats(char.name, char.stats)
-
+                        if not char.status == "dead":
+                            char.get_stats()  
+                            self.myview.draw_stats(char.name, char.stats)
+                        elif char.status == "dead": 
+                            self.myview.death(char)
+                            self.chars_on_screen.remove(char)
+                            self.myhero.status = "peace"
 
     def on_key_press(self, e):
         if self.myhero.status == "peace":
@@ -85,7 +89,8 @@ class Game:
                 self.turn_hero("left")
                 if coords[0] >= 1 and not self.mymap.get_cell(coords[0]-1,coords[1]) == 1:
                     self.move(self.myhero.picture, -1, 0)
-            self.is_someone_here()
+            if len(self.chars_on_screen) > 1:
+                self.is_someone_here()
         else:
             if e.keysym == 'space':
                 self.myview.delete_stats()
