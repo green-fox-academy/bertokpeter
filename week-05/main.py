@@ -62,15 +62,18 @@ class Game:
             self.myview.death(self.myhero)
             self.myview.game_over()
         else:
-            self.myhero.get_stats()
-            self.myview.draw_stats(self.myhero.name, self.myhero.stats)
             if not char.status == "dead":
                 char.get_stats()  
                 self.myview.draw_stats(char.name, char.stats)
+                self.myhero.get_stats()
+                self.myview.draw_stats(self.myhero.name, self.myhero.stats)
             elif char.status == "dead": 
                 self.myview.death(char)
                 self.chars_on_screen.remove(char)
                 self.myhero.status = "peace"
+                self.myhero.level_up()
+                self.myhero.get_stats()
+                self.myview.draw_stats(self.myhero.name, self.myhero.stats)
 
     def on_key_press(self, e):
         if self.myhero.status == "peace":
