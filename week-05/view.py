@@ -34,12 +34,13 @@ class View:
         text = (char + " (Level " + str(stats["level"]) + ") HP: " + str(stats["currenthp"]) + "/"
                 + str(stats["maxhp"]) + " | DP: " + str(stats["dp"]) + " | SP: " + str(stats["sp"]))
         if char == "Hero":
-            self.canvas.create_text(5,650, anchor=NW, font=24, text=text)
+            self.canvas.create_text(5,650, anchor=NW, font=24, tag="hero_stats", text=text)
         else:
             self.canvas.create_text(715,650, anchor=NE, font=24, tag="monster_stats", text=text)
     
     def delete_stats(self):
         self.canvas.delete("monster_stats")
+        self.canvas.delete("hero_stats")
     
     def display(self):
         self.root.mainloop()
