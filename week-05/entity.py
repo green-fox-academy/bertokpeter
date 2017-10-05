@@ -15,6 +15,12 @@ class Entity:
                       "currenthp":self.currenthp,
                       "sp":self.sp,
                       "dp":self.dp}
+
+    def get_coords(self, coords):
+        self.coords = coords
+        self.coords[0] = int(self.coords[0])//72
+        self.coords[1] = int(self.coords[1])//72
+        return self.coords
         
     def dice(self):
         return random.randint(1,6)
@@ -26,8 +32,8 @@ class Hero(Entity):
         self.currenthp = self.maxhp
         self.sp = 2*self.dice()
         self.dp = 5 + self.dice()
+        self.name = "Hero"
         self.get_stats()
-        print(self.stats)
 
 class Skeleton(Entity):
     def __init__(self, drawing):
@@ -36,8 +42,8 @@ class Skeleton(Entity):
         self.currenthp = self.maxhp
         self.sp = self.level/2*self.dice()
         self.dp = self.level*self.dice()
+        self.name = "Skeleton"
         self.get_stats()
-        print(self.stats)
 
 class Boss(Entity):
     def __init__(self, drawing):
@@ -46,5 +52,5 @@ class Boss(Entity):
         self.currenthp = self.maxhp
         self.sp = self.level/2*self.dice() + self.dice()/2
         self.dp = self.level*self.dice() + self.level
+        self.name = "Boss"
         self.get_stats()
-        print(self.stats)
