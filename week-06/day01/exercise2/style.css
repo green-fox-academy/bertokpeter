@@ -1,0 +1,14 @@
+.yellow {
+    display: flex;
+    background: yellow;
+    width: 100%;
+    height: 280px;
+    justify-content: center;
+    align-items: center;
+}
+
+.purple {
+    background: purple;
+    width: 110px;
+    height: 110px;
+}
