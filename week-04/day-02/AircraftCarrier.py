@@ -38,7 +38,7 @@ class F35(AirCraft):
         self.max_ammo = 12
         self.base_damage = 50
 
-class Carrier(AirCraft):
+class Carrier():
     def __init__(self, ammo, health):
         self.aircrafts = []
         self.ammo_store = ammo
@@ -96,13 +96,10 @@ protoss.addAircraft(F35)
 protoss.addAircraft(F35)
 protoss.addAircraft(F35)
 protoss.addAircraft(F35)
-protoss.addAircraft(F35)
-protoss.addAircraft(F35)
-protoss.addAircraft(F35)
 DeathStar.addAircraft(F16)
 DeathStar.addAircraft(F16)
 
-print(protoss.aircrafts[1])
+print(protoss.aircrafts[1].type)
 protoss.fill()
 DeathStar.fill()
 protoss.fight(DeathStar)
