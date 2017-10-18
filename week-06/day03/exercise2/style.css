@@ -1,0 +1,30 @@
+.container {
+    display: flex;
+    max-width: 960px;
+    margin: auto;
+}
+
+.item {
+    height: 240px;
+}
+
+.green {
+    background: green;
+    flex-grow: 1;
+}
+
+.yellow {
+    background: yellow;
+    flex-grow: 2;
+}
+
+.purple {
+    background: purple;
+    flex-grow: 1;
+}
+
+@media screen and (max-width: 960px) {
+    .container {
+        flex-direction: column;
+    }
+}
