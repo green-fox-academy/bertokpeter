@@ -1,0 +1,31 @@
+body {
+    margin: 0;
+}
+
+.container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 140px;
+    grid-gap: 10px;
+    background: #333;
+}
+
+.article {
+    background: #B02AFF;
+}
+
+.main {
+    background: #51D400;
+    display: flex;
+    grid-column: 2/4;
+    grid-row: 1/3;
+    justify-content: center;
+    align-items: center;
+}
+
+.main div {
+    background: #FFD62A;
+    width: 70%;
+    height: 70%;
+}
