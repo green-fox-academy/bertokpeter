@@ -16,25 +16,21 @@ header {
 }
 
 nav {
-    height: 50%;
+    height: 100%;
     position: relative;
     display: flex;
 }
 
-.hamburger, .menu a, .navigation a{
+.hamburger, .float-menu a, .navigation a{
     color: #ECEC28;
 }
 
 #check {
-    display: none;
     position: absolute;
     left: -1000px;
-    z-index: 1;
-    width: 40px;
-    height: 100%;
 }
 
-input[type=checkbox]:checked ~ .menu {
+input[type=checkbox]:checked ~ .float-menu {
     transform: translateY(545px)
 }
 
@@ -45,7 +41,7 @@ input[type=checkbox]:checked ~ .menu {
     width: 40px;
 }
 
-.menu {
+.float-menu {
     position: absolute;
     top: -500px;
     left: 0px;
@@ -59,12 +55,16 @@ ul {
     padding: 0;
 }
 
-.menu li {
-    margin: 10px 0;
+.float-menu li {
+    padding: 10px 0;
 }
 
-.menu li:hover {
+.float-menu li:hover, .navigation li:hover {
     background: lightgray;
+}
+
+.float-menu li:hover a, .navigation li:hover a {
+    color: #000;
 }
 
 .navigation {
@@ -76,7 +76,7 @@ ul {
     grid-gap: 10px;
 }
 
-.navigation li, .menu li{
+.navigation li, .float-menu li{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -92,6 +92,7 @@ a {
 
 .wrapper {
     margin-top: 78px;
+    min-width: 324px;
     background: url("Star Wars.jpg") no-repeat;
     background-size: 100% 100%;
     padding-top: 8px;
@@ -120,8 +121,9 @@ a {
 
 article {
     color: #FFF;
-    padding: 15px;
+    padding: 25px;
     grid-column: span 2;
+    text-align: justify;
 }
 
 .anchor {
@@ -167,10 +169,6 @@ footer {
 
     .navigation {
         display: none;
-    }
-
-    #check {
-        display: block;
     }
 
     .hamburger{
