@@ -67,6 +67,11 @@
     box-shadow: inset 0 0 5px #000;
 }
 
-.cart::after {
-    
+.cart p {
+    margin-right: 5px;
+}
+
+.cart div {
+    width: 1.5em;
+    height: 1.5em;
 }
