@@ -22,6 +22,6 @@ for (let i = 1; i < lineCount+1; ++i) {
     } else if (i < lineCount-1) {
         console.log("%" + " ".repeat(i-2) + "%" + " ".repeat(lineCount-2-i) + "%");
     } else {
-        console.log("%" + " ".repeat(lineCount-3) + "%")
+        console.log("%" + " ".repeat(lineCount-3) + "%");
     }
 }
