@@ -31,7 +31,7 @@ nav {
 }
 
 input[type=checkbox]:checked ~ .float-menu {
-    transform: translateY(545px)
+    transform: translateY(565px)
 }
 
 .hamburger {
@@ -130,7 +130,6 @@ article {
     display: block;
     height: 78px; 
     margin-top: -78px; 
-    visibility: hidden;
 }
 
 h1 {
