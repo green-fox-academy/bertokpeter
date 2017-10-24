@@ -7,7 +7,7 @@ let b = 526;
 console.log(a);
 console.log(b);
 
-[a, b] = [b, a]
+[a, b] = [b, a];
 
 
 console.log(a);
