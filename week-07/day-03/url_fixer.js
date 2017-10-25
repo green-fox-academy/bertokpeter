@@ -4,9 +4,7 @@
 
 let url = "https//www.reddit.com/r/nevertellmethebots";
 
-let letters = url.split("");
-letters.splice(url.indexOf("//"),0,":");
-letters.splice(url.indexOf("bots"),4,"odds");
-
-url = letters.join("");
+let index1 = url.indexOf("//");
+let index2 = url.indexOf("bots");
+url = url.slice(0,index1) + ":" + url.slice(index1, index2) + "odds"; 
 console.log(url);
