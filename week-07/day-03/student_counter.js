@@ -30,7 +30,7 @@ function sum_candies(student_log) {
             sum += e["age"]
         }
     });
-    return sum
+    return sum;
 }
 
-console.log(sum_candies(students))
+console.log(sum_candies(students));
