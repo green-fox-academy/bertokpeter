@@ -9,4 +9,4 @@ function doubling(number) {
     return doubled
 }
 
-console.log(doubling(ak))
+console.log(doubling(ak));
