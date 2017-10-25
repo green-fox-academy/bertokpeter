@@ -9,4 +9,4 @@ function factorio(number) {
     }
 }
 
-console.log(factorio(3))
+console.log(factorio(3));
