@@ -16,5 +16,5 @@ let temp = [];
 for (let i = 0; i < aj.length; i++) {
     temp.push(aj[aj.length-i-1]);
 }
-aj = temp
+aj = temp;
 console.log(aj);
