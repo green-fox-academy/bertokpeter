@@ -13,4 +13,4 @@ s = s.map(function(e) {
     }
 });
 
-console.log(s[3])
+console.log(s[3]);
