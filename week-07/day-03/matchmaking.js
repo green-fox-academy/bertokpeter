@@ -10,7 +10,7 @@ for (let i = 0; i < Math.max(girls.length, boys.length); i++) {
     if (girls.length > i) {
         order.push(girls[i]);
     }
-    if (boys.length > 0) {
+    if (boys.length > i) {
         order.push(boys[i]);
     }
 }
