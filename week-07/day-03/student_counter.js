@@ -17,7 +17,7 @@ let students = [
 
 function candy_counter(student_log) {
     student_log.forEach(function(e) {
-        console.log(e["name"], "has", e["candies"], "candies");
+        console.log(e.name, "has", e.candies, "candies");
     });
 }
 
@@ -26,8 +26,8 @@ candy_counter(students);
 function sum_candies(student_log) {
     let sum = 0;
     student_log.forEach(function(e) {
-        if (e["candies"] < 5) {
-            sum += e["age"]
+        if (e.candies < 5) {
+            sum += e.age;
         }
     });
     return sum;
