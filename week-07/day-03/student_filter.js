@@ -15,8 +15,8 @@ let students = [
 
 function got_more(student_log) {
     student_log.forEach(function(e) {
-        if (e["candies"] > 4) {
-            console.log(e["name"], "has more than 4 candies.");
+        if (e.candies > 4) {
+            console.log(e.name, "has more than 4 candies.");
         }
     });
 }
@@ -26,7 +26,7 @@ got_more(students);
 function average_candies(student_log) {
     let avr_candies = 0;
     student_log.forEach(function(e) {
-        avr_candies += e["candies"];
+        avr_candies += e.candies;
     }); 
     avr_candies /= student_log.length;
     return avr_candies;
