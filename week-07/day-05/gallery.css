@@ -13,6 +13,7 @@ body {
     margin: 40px auto;
     display: flex;
     justify-content: space-around;
+    align-items: center;
     position: relative;
 }
 
@@ -25,7 +26,8 @@ body {
     height: 100%;
 }
 
-.image {
+.container {
+    position: relative;
 }
 
 .arrow {
@@ -36,19 +38,32 @@ body {
     transform: rotate(180deg);
 }
 
+.description {
+    position: absolute;
+    width: 100%;
+    height: 150px;
+    top: 250px;
+    background-color: black;
+    opacity: 0.5;
+}
+
 .navbar {
     list-style: none;
     margin: 0 auto;
     display: flex;
-    width: 410px;
+    width: 430px;
     justify-content: space-between;
     padding: 0;
 }
 
 
 .thumbnails {
-    background: red;
     width: 50px;
     height: 50px;
     cursor: pointer;
+    border: 3px solid white;
+}
+
+.thumbnails:hover {
+    filter: brightness(150%);
 }
