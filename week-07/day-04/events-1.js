@@ -1,17 +1,16 @@
 'use strict';
 
 let button = document.querySelector('button');
-let bod = document.querySelector('div');
-
-function changeBg() {
-    bod.classList.toggle('party')
-}
+let div = document.querySelector('div');
 
 button.addEventListener('click', changeBg);
-// function changebg() {
-//     if (bod.classList.contains('party')){
-//         bod.classList.remove('party')
+function changeBg() {
+        div.classList.toggle('party')
+}
+// function changeBg() {
+//     if (div.classList.contains('party')){
+//         div.classList.remove('party')
 //     } else {
-//         bod.classList.add('party');
+//         div.classList.add('party');
 //     }
 // }
