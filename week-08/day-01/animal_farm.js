@@ -56,7 +56,7 @@ class Farm {
     }
 
     progress() {
-        this.animals.forEach(function(e,i){
+        this.animals.forEach(function(e){
             let randNumbers = [];
             for (let i = 0; i < 3; i++){
                 randNumbers.push(Math.random());
