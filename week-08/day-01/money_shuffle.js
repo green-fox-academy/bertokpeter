@@ -18,8 +18,16 @@ const Cyprus = {
 
 const Shuffler = {
     cash: 10000,
-    pick: function(name) {
+    count: 0,
+    pick: function() {
         this.cash -= 1000;
+        let name = null;
+        if (this.count % 2 == 0) {
+            name = Panama;
+        } else {
+            name = Cyprus;
+        }
+        this.count += 1;
         name.deposit(1000);
         console.log(name.name + ' got 1000' );
     }
