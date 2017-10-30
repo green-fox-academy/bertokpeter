@@ -33,10 +33,10 @@ const Shuffler = {
     }
 }
 
-Shuffler.pick(Panama) // prints Panama got 1000
-Shuffler.pick(Cyprus) // prints Cyprus got 1000
-Shuffler.pick(Panama) // prints Panama got 1000
-Shuffler.pick(Cyprus) // prints Cyprus got 1000
+Shuffler.pick() // prints Panama got 1000
+Shuffler.pick() // prints Cyprus got 1000
+Shuffler.pick() // prints Panama got 1000
+Shuffler.pick() // prints Cyprus got 1000
 
 console.log( Panama.cash ) // 2000 
 console.log( Cyprus.cash ) // 2000 
