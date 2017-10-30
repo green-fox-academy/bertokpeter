@@ -39,3 +39,8 @@ button {
     display: flex;
     justify-content: center;
 }
+
+.selected {
+    background-color: green;
+    color: white;
+}
