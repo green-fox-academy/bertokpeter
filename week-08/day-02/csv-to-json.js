@@ -42,8 +42,7 @@ let objectList = data.split('\n').map(function(object){
 });
 
 objectList = objectList.filter(function(object,i){
-    let slicedList = objectList.slice(0,i);
-    return slicedList.every(element => element.name !== object.name);
+    return objectList.slice(0,i).every(element => element.name !== object.name);
 });
 console.log(objectList);
 
