@@ -1,13 +1,10 @@
 'use strict';
 // Create the multiplier function that you can use like this:
 
-function multiplier(num) {
-    let multiplicator = num;
-    let multiply = function(number) {
-        let result = multiplicator * number
-        return result
-    };
-    return multiply;
+function multiplier(x) {
+    return function (y) {
+        return x*y
+    }
 }
 
 const duplicator = multiplier(2);
