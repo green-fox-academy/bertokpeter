@@ -1,3 +1,4 @@
+'use strict';
 class ElevatorModel {
     constructor(maxfloor, maxpeople){
         this.maxfloor = maxfloor;
@@ -82,6 +83,12 @@ class ElevatorController {
         this.down.addEventListener('click', this.elevatorDown.bind(this));
     }
     
+
+    // eventHandler(action) {
+    //     console.log(this);
+    //     action;
+    //     this.view.update(this.model.people, this.model.position);
+    // }
     addPeople() {
         this.model.addPeople();
         this.view.update(this.model.people, this.model.position);
@@ -103,4 +110,4 @@ class ElevatorController {
     }
 }
 
-let lift = new ElevatorController(100, 100);
+let lift = new ElevatorController(10, 10);
