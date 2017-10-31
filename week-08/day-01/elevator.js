@@ -4,7 +4,7 @@ class ElevatorModel {
         this.maxfloor = maxfloor;
         this.maxpeople = maxpeople;
         this.position = 10;
-        this.people = maxpeople;
+        this.people = 0;
     }
 
     checkLimits(action){
@@ -54,7 +54,7 @@ class ElevatorView {
         }
         this.floors = document.querySelectorAll('li');
         this.floors[floors-1].classList.add('selected');
-        this.floors[floors-1].textContent = people;
+        this.floors[floors-1].textContent = 0;
     }
 
     update(people, position) {
@@ -74,38 +74,25 @@ class ElevatorController {
         this.model = new ElevatorModel(maxfloor, maxpeople);
         this.view = new ElevatorView(maxfloor, maxpeople, this);
         this.add = document.querySelector('.add');
-        this.add.addEventListener('click', this.addPeople.bind(this));
+        this.add.addEventListener('click', function (){
+            this.eventHandler(this.model.addPeople);
+        }.bind(this));
         this.remove = document.querySelector('.remove');
-        this.remove.addEventListener('click', this.removePeople.bind(this));
+        this.remove.addEventListener('click', function (){
+            this.eventHandler(this.model.removePeople);
+        }.bind(this));
         this.up = document.querySelector('.up');
-        this.up.addEventListener('click', this.elevatorUp.bind(this));
+        this.up.addEventListener('click', function (){
+            this.eventHandler(this.model.elevatorUp);
+        }.bind(this));
         this.down = document.querySelector('.down');
-        this.down.addEventListener('click', this.elevatorDown.bind(this));
+        this.down.addEventListener('click', function (){
+            this.eventHandler(this.model.elevatorDown);
+        }.bind(this));
     }
     
-
-    // eventHandler(action) {
-    //     console.log(this);
-    //     action;
-    //     this.view.update(this.model.people, this.model.position);
-    // }
-    addPeople() {
-        this.model.addPeople();
-        this.view.update(this.model.people, this.model.position);
-    }
-
-    removePeople() {
-        this.model.removePeople();
-        this.view.update(this.model.people, this.model.position);
-    }
-    
-    elevatorUp() {
-        this.model.elevatorUp();
-        this.view.update(this.model.people, this.model.position);
-    }
-    
-    elevatorDown() {
-        this.model.elevatorDown();
+    eventHandler(action) {
+        action.bind(this.model)();
         this.view.update(this.model.people, this.model.position);
     }
 }
