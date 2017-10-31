@@ -8,13 +8,13 @@
 
 function prison(name) {
     let fugitive = name;
-    let prisonBreak = {
+    return {
         x: 0,
         visit: function(){
             if (fugitive === '') {
                 console.log('Nobody is here anymore');
             } else {
-                this.x += 1;
+                this.x++;
                 console.log(fugitive + ' is visited ' + this.x + ' time(s)');
             }
         },
@@ -22,8 +22,7 @@ function prison(name) {
             console.log('BREAKING NEWS, ' + fugitive + ' escaped the prison');
             fugitive = '';
         },
-    }
-    return prisonBreak;
+    };
 }
 
 const alcatraz = prison('Sad Panda');
