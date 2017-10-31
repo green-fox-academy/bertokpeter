@@ -3,8 +3,8 @@
 function factorialTillLimitWithCallback(limit, callback) {
   var factorial = 1;
   for (var i = 1; i <= limit; ++i) {
-    callback(factorial);
-    factorial *= i;
+      callback(factorial);
+      factorial *= i;
   }
 }
 
