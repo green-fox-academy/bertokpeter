@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Delayed_click</title>
+	</head>
+	<body>
+		<button>Click me!</button>
+		<script>
+			'use script';
+			button = document.querySelector('button');
+			button.addEventListener('click', function(){
+				setTimeout(delay, 2000);
+			});
+			function delay(){
+				text = document.createElement('p');
+				text.textContent = '2 seconds elapsed';
+				document.body.appendChild(text);
+			}
+		</script>
+	</body>
+</html>
