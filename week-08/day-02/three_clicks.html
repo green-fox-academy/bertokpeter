@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Delayed_click</title>
+	</head>
+	<body>
+		<button>Click me!</button>
+		<script>
+			'use script';
+            let clickCount = 0;
+            let isItReady = false;
+            button = document.querySelector('button');
+            button.addEventListener('click', clickcounter);
+            window.onload = function(){
+                setTimeout(function(){
+                    isItReady = true;
+                }, 5000);
+            };
+			function clickcounter(){
+                clickCount++;
+                if (clickCount === 3) {
+                    let interval = setInterval(function(){
+                        if (isItReady) {
+                            text = document.createElement('p');
+                            text.textContent = '5 seconds elapsed and clicked 3 times';
+                            document.body.appendChild(text);
+                            clearInterval(interval);
+                        }
+                    },0);
+                }
+			}
+		</script>
+	</body>
+</html>
