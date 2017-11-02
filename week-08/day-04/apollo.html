@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+<body>
+    <script>
+        'use strict';
+        let body = document.querySelector('body');
+        let url = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=c46db5a81fa544c89e615e7aa199bd00&q=moon Apollo&begin_date=19690719&end_date=19690720";
+        let request = new XMLHttpRequest();
+        request.open('GET', url, true);
+        request.onload = function(){
+            let nyTimes = JSON.parse(request.responseText);
+            let articles = nyTimes.response.docs;
+            writeTitles(articles);
+        }
+        function writeTitles(articleList){
+            articleList.forEach(function(article, i) {
+                let headline = document.createElement('h1');
+                headline.textContent = (i+1) + '. ' + article.headline.main
+                body.appendChild(headline);
+                let snippet = document.createElement('p');
+                snippet.textContent = article.snippet
+                body.appendChild(snippet);
+                let pub_date = document.createElement('p');
+                pub_date.textContent = article.pub_date
+                body.appendChild(pub_date);
+                let link = document.createElement('a');
+                link.textContent = 'You can access the full article here';
+                link.setAttribute('href', '' + article.web_url);
+                body.appendChild(link);
+            });
+        }
+        request.send()
+
+    </script>
+</body>
+</html>
