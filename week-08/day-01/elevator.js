@@ -88,9 +88,9 @@ class ElevatorController {
         this.down = document.querySelector('.down');
         this.down.addEventListener('click', function (){
             this.eventHandler(this.model.elevatorDown);
-        }.bind(this));
+        }.bind(this)); 
     }
-    
+
     eventHandler(action) {
         action.bind(this.model)();
         this.view.update(this.model.people, this.model.position);
