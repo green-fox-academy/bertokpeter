@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .main {
+            height: 500px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="main"><img src=''/></div>
+    <div class='thumbnails'></div>
+    <script>
+        'use strict';
+        let xml = new XMLHttpRequest();
+        xml.open('GET', 'https://api.giphy.com/v1/stickers/trending?api_key=FE9wnb6SUMsaFIT5Pn6GedbP1O02DQPK&limit=25&rating=G', true);
+        xml.onload = function () {
+            let gifs = JSON.parse(xml.responseText);
+            thumbnails.forEach(function(img, i){
+                img.setAttribute('src', gifs.data[i].images.fixed_width_small_still.url);
+                img.addEventListener('click', function(){
+                    changeImage(gifs.data[i].images.downsized.url);
+                });
+            });
+        }
+        
+        let main = document.querySelector('.main img');
+        let container = document.querySelector('.thumbnails');
+        for (let i = 0; i < 16; i++){
+            let item = document.createElement('img');
+            container.appendChild(item);
+        }
+        let thumbnails = document.querySelectorAll('.thumbnails img');
+        
+        function changeImage(url){
+            main.setAttribute('src', url)
+        }
+        xml.send();
+        </script>
+</body>
+</html>
