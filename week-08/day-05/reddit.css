@@ -34,6 +34,7 @@ div.post {
     background-color: white;
     display: flex;
     height: 100px;
+    margin-bottom: 2px;
 }
 
 div.voter {
@@ -45,7 +46,42 @@ div.voter {
     align-items: center;
 }
 
-button {
+.voter span {
+    color: #B4B4B4;
+    font-weight: bold;
+}
+
+.post-content {
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+
+.post-content a {
+    font-weight: bold;
+    text-decoration: none;
+    color: #000;
+}
+
+.post-content p {
+    margin-top: 5px;
+}
+
+.post-content p, .post-content a.options {
+    font-size: 0.8em;
+    color: #B4B4B4;
+}
+
+.post-content a.options {
+    font-weight: lighter;
+    margin-right: 10px;
+}
+
+a.submit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
     color: white;
     font-weight: bold;
     background-color: #4AA3DF;
@@ -55,11 +91,11 @@ button {
     border: 0;
 }
 
-button:focus {
+a.submit:focus {
     background-color: #2AABD2; 
 }
 
-button:active {
+a.submit:active {
     box-shadow: inset 0 0 10px #000;
 }
 
