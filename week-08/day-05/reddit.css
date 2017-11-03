@@ -23,3 +23,49 @@ h1 {
     letter-spacing: 50px;
 }
 
+main {
+    margin: 46px 10px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 15px;
+}
+
+button {
+    color: white;
+    font-weight: bold;
+    background-color: #4AA3DF;
+    letter-spacing: 5px;
+    height: 40px;
+    border: 0;
+}
+
+button:focus {
+    background-color: #2AABD2; 
+}
+
+button:active {
+    box-shadow: inset 0 0 10px #000;
+}
+
+section.side {
+    grid-column: 2/2;
+}
+
+div.about.space {
+    background-color: white;
+    box-sizing: border-box;
+    height: 40px;
+    padding: 10px 15px;
+}
+
+span.about {
+    font-weight: bold;
+}
+
+span.space {
+    color: blue;
+}
+
+p.share {
+    text-align: center;
+}
