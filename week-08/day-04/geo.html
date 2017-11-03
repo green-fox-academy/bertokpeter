@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Geo Location</title>
+</head>
+<body>
+    <script>
+        'use strict';
+        let myRequest = new XMLHttpRequest();
+        myRequest.setRequestHeader('X-Mashape-Key', 'D6P7isqeqFmshdyckOZwsWopvw8zp1XRUAtjsnWCehYh5OapaY')
+        myRequest.open('GET', 'https://devru-latitude-longitude-find-v1.p.mashape.com/latlon.php?location=Budapest', true);
+        myRequest.onload = function () {
+            let cityData = JSON.parse(myRequest.responseText);
+            console.log(cityData);
+        }
+    </script>
+</body>
+</html>
