@@ -26,7 +26,7 @@ function createHTML (url, title, timestamp) {
     post.classList.add('post');
     post.innerHTML = `<div class="voter"><img src="assets/upvote.png"/><span>0</span><img src="assets/downvote.png"/>
                      </div><div class="post-content"><a href="` + url + `">` + title +`</a><p>submitted ` + timestamp + ` mins ago by
-                     anonymus</p><a href="">Modify</a><a href="">Remove</a></div>`;
+                     anonymus</p><a class="options" href="">Modify</a><a class="options" href="">Remove</a></div>`;
     mainSection.appendChild(post);
 }
 
