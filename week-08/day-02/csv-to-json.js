@@ -41,10 +41,10 @@ let objectList = data.split('\n').map(function(object){
     }
 });
 
-objectList = objectList.filter(function(object,i){
+let uniqueList = objectList.filter(function(object,i){
     return objectList.slice(0,i).every(element => element.name !== object.name);
 });
-console.log(objectList);
+console.log(uniqueList);
 
 // let slicedList = objectList.slice(0,i);
 // function(element){
