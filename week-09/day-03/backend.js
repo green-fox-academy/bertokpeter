@@ -1,6 +1,8 @@
 'use strict';
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
+const jsonParser = bodyParser.json();
 
 express.json.type = "application/json"
 app.use('/assets', express.static("./assets"));
@@ -31,4 +33,34 @@ app.get('/appenda/:appendable', function(req, res) {
     res.json({"appended": req.params.appendable + "a"});
 });
 
+app.post('/dountil/:what', jsonParser, function(req, res) {
+    let result = 0;
+    if (!req.body.until) {
+        res.json({"error": "Please provide a number"})
+    } else {
+        if (req.params.what === "sum"){
+            result = sum(req.body.until);
+        } else if (req.params.what === "factor"){
+            result = factor(req.body.until);
+        }
+        res.json({"result": result})
+    }
+});
+
 app.listen(8080);
+
+function sum(until){
+    let summa = 0;
+    for (let i=0; i < until+1; i++){
+        summa += i;
+    }
+    return summa
+}
+
+function factor(until) {
+    let factor = 1;
+    for (let i=1; i < until+1; i++){
+        factor *= i;
+    }
+    return factor
+}
