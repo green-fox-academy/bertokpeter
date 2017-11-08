@@ -1,11 +1,10 @@
 'use strict';
 const express = require('express');
-const bodyParser = require('body-parser');
 const app = express();
-const jsonParser = bodyParser.json();
 
 express.json.type = "application/json"
 app.use('/assets', express.static("./assets"));
+app.use(express.json());
 
 app.get('/', function(req,res) {
     res.sendFile(__dirname + '/index.html');
@@ -33,7 +32,7 @@ app.get('/appenda/:appendable', function(req, res) {
     res.json({"appended": req.params.appendable + "a"});
 });
 
-app.post('/dountil/:what', jsonParser, function(req, res) {
+app.post('/dountil/:what', function(req, res) {
     let result = 0;
     if (!req.body.until) {
         res.json({"error": "Please provide a number"})
