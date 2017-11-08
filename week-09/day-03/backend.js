@@ -1,6 +1,7 @@
-let express = require('express');
+'use strict';
+const express = require('express');
+const app = express();
 
-let app = express();
 express.json.type = "application/json"
 app.use('/assets', express.static("./assets"));
 
@@ -24,6 +25,10 @@ app.get('/greeter', function(req,res) {
     } else {
         res.json({'welcome_message': "Oh, hi there " + req.query.name + ", my dear " + req.query.title + "!"});
     }
+});
+
+app.get('/appenda/:appendable', function(req, res) {
+    res.json({"appended": req.params.appendable + "a"});
 });
 
 app.listen(8080);
