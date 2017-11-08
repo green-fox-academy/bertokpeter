@@ -46,6 +46,22 @@ app.post('/dountil/:what', function(req, res) {
     }
 });
 
+app.post('/arrays', function(req,res) {
+    let result = 0;
+    if (!req.body.what || !req.body.numbers){
+        res.json({"error": "Please provide what to do with the numbers!"});
+    } else {
+        if (req.body.what === "sum") {
+            result = req.body.numbers.reduce((prev, current) => prev+current);
+        } else if (req.body.what === "multiply") {
+            result = req.body.numbers.reduce((prev, current) => prev*current);
+        } else if (req.body.what === "double") {
+            result = req.body.numbers.map((number) => number*2);
+        }
+        res.json({"result": result});
+    }
+});
+
 app.listen(8080);
 
 function sum(until){
