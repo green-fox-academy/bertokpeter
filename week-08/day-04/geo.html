@@ -7,15 +7,48 @@
     <title>Geo Location</title>
 </head>
 <body>
+    <label for="location">Write location here:</label>
+    <input type="text" id="location" name="location" required/>
+    <button class="send">SEND</button>
+  
     <script>
         'use strict';
+        let body = document.querySelector('body');
+        let input = document.getElementById('location');
+        const send = document.querySelector('button.send');
+        let params = ''
+        
         let myRequest = new XMLHttpRequest();
-        myRequest.setRequestHeader('X-Mashape-Key', 'D6P7isqeqFmshdyckOZwsWopvw8zp1XRUAtjsnWCehYh5OapaY')
-        myRequest.open('GET', 'https://devru-latitude-longitude-find-v1.p.mashape.com/latlon.php?location=Budapest', true);
         myRequest.onload = function () {
             let cityData = JSON.parse(myRequest.responseText);
             console.log(cityData);
+            let longitude = document.createElement('p');
+            let latitude = document.createElement('p');
+            body.appendChild(longitude);
+            body.appendChild(latitude);
+            longitude.textContent = input.value +"'s longitude is:" + cityData.Results[0].lon;
+            latitude.textContent = input.value +"'s latitude is:" + cityData.Results[0].lat;
+            let map = document.createElement('div');
+            map.innerHTML =   `<iframe
+            width="600"
+            height="450"
+            frameborder="0" style="border:0"
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAzKLSZTTPKiOj4CsZGGGrQlMhAOa-6e3U&q=` + params + `" allowfullscreen>
+            </iframe>`;
+            body.appendChild(map);
         }
+        
+        send.addEventListener('click',function(){
+            let words = input.value.split(' ');
+            params = words.join('+');
+            let url = 'https://devru-latitude-longitude-find-v1.p.mashape.com/latlon.php?location=';
+            url = url + params;
+            myRequest.open('GET', url, true);
+            myRequest.setRequestHeader('Accept', 'application/json')
+            myRequest.setRequestHeader('X-Mashape-Key', 'D6P7isqeqFmshdyckOZwsWopvw8zp1XRUAtjsnWCehYh5OapaY')
+            myRequest.send();
+        });
+
     </script>
 </body>
 </html>
