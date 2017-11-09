@@ -4,6 +4,7 @@ const express = require('express');
 const app = express();
 const mysql = require('mysql');
 
+app.use('/assets', express.static('./assets'));
 app.use(express.json());
 
 const conn = mysql.createConnection({
@@ -16,10 +17,29 @@ const conn = mysql.createConnection({
 conn.connect(function(err){
     if(err){
         console.log("Error connecting to Db");
+        return;
     } else {
         console.log("Connection established");
     }
 });
 
-conn.end();
+app.get('/', function(req,res){
+    res.sendFile(__dirname + '/index.html');
+});
+
+app.get('/list', function(req, res){
+    conn.query('SELECT book_name FROM book_mast;', function(err, rows){
+        if(err) {
+            console.log(err.toString());
+        }
+        console.log("Data received from Db:\n");
+        let htmlString = '<ul>';
+        rows.forEach(function(row) {
+            htmlString = htmlString + '<li>' + row.book_name + '</li>';
+        });
+        htmlString = htmlString + '</ul>';
+        res.send(htmlString)
+    });
+});
+
 app.listen(3000);
