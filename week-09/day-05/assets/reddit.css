@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+}
+
+body{
+    background-color: #EEEEEE;
+}
+
+header {
+    background-image: url("maxresdefault.jpg");
+    background-position: top;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    color: white;
+    letter-spacing: 50px;
+}
+
+main {
+    margin: 46px 10px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 15px;
+}
+
+div.post {
+    background-color: white;
+    display: flex;
+    height: 100px;
+    margin-bottom: 2px;
+}
+
+div.voter {
+    height: 100%;
+    width:  10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.voter span {
+    color: #B4B4B4;
+    font-weight: bold;
+}
+
+.post-content {
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+
+.post-content a {
+    font-weight: bold;
+    text-decoration: none;
+    color: #000;
+}
+
+.post-content p {
+    margin-top: 5px;
+}
+
+.post-content p, .post-content a.options {
+    font-size: 0.8em;
+    color: #B4B4B4;
+}
+
+.post-content a.options {
+    font-weight: lighter;
+    margin-right: 10px;
+}
+
+a.submit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    background-color: #4AA3DF;
+    letter-spacing: 5px;
+    height: 40px;
+    width: 100%;
+    border: 0;
+}
+
+a.submit:focus {
+    background-color: #2AABD2; 
+}
+
+a.submit:active {
+    box-shadow: inset 0 0 10px #000;
+}
+
+div.about.space {
+    background-color: white;
+    box-sizing: border-box;
+    height: 40px;
+    padding: 10px 15px;
+    margin-top: 15px;
+}
+
+span.about {
+    font-weight: bold;
+}
+
+span.space {
+    color: blue;
+}
+
+p.share {
+    text-align: center;
+}
