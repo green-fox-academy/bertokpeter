@@ -14,3 +14,17 @@ Animal.prototype.say = function(){
     console.log(this.voice);
 }
 cat.say();
+
+function talk(){
+    console.log(this.sound);
+}
+let animal = {
+    talk
+};
+
+let dog = {
+    sound: 'woof'
+};
+
+Object.setPrototypeOf(dog, animal);
+dog.talk();
