@@ -25,21 +25,20 @@ function listPosts(json){
     });
     // let removers = document.querySelectorAll('a.remove');
     // removers.forEach(function(element){
-        //     element.addEventListener('click', function(){
-            //         talkToAPI('DELETE', url, null, del)
-            //     });
-            // });
-            createVoters();
-        }
+    //     element.addEventListener('click', function(){
+    //         talkToAPI('DELETE', url, null, del)
+    //     });
+    // });
+    createVoters();
+    }
         
-        function createVoters(){
-            let upvoters = document.querySelectorAll('img.upvote');
+function createVoters(){
+    let upvoters = document.querySelectorAll('img.upvote');
     let downvoters = document.querySelectorAll('img.downvote');
     upvoters.forEach(function(element, i){
         let id = 0;
         if (element.className.length > 10){
             id = element.className.slice(element.className.length-2);
-            
         } else {
             id = element.className[element.className.length-1];
         }
