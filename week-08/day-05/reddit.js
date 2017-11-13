@@ -36,7 +36,13 @@ function createVoters(){
     let upvoters = document.querySelectorAll('img.upvote');
     let downvoters = document.querySelectorAll('img.downvote');
     upvoters.forEach(function(element, i){
-        let id = element.className[element.className.length-1];
+        let id = 0;
+        if (element.className.length > 10){
+            id = element.className.slice(element.className.length-2);
+            
+        } else {
+            id = element.className[element.className.length-1];
+        }
         element.addEventListener('click', function(){
             talkToAPI('PUT', url + '/' + id + '/upvote', null, upVote);
         });
@@ -54,13 +60,13 @@ function createHTML (score, url, title, timestamp, user, id) {
         username = 'anonymus'
     }
     post.innerHTML = `<div class="voter">
-                        <img class="upvote id` + id + `" src="assets/upvote.png"/>
-                        <span class="id` + id + `">` + score + `</span>
-                        <img class="downvote id` + id + `" src="assets/downvote.png"/>
+                        <img class="upvote id${id}" src="assets/upvote.png"/>
+                        <span class="id${id}">${score}</span>
+                        <img class="downvote id${id}" src="assets/downvote.png"/>
                      </div>
                      <div class="post-content">
-                       <a href="` + url + `">` + title +`</a>
-                       <p>submitted ` + timestamp + ` mins ago by ` + username + ` </p>
+                       <a href="${url}">${title}</a>
+                       <p>submitted ${timestamp} mins ago by ${username}</p>
                        <a class="options" href="">Modify</a>
                        <a class="options remove">Remove</a>
                     </div>`;
