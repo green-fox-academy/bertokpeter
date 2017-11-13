@@ -71,4 +71,46 @@ app.post('/posts', function(req, res){
     });
 });
 
+app.put('/posts/:id/upvote',function(req, res){
+    conn.query(`UPDATE posts SET score = score + 1 WHERE id = "${req.params.id}"`, function(err, results, fields){
+        if(err) throw err;
+    });
+    conn.query(`SELECT * FROM posts WHERE id = "${req.params.id}"`, function(err, rows){
+        if(err) {
+            console.log(err.toString());
+        }
+        console.log("Data received from Db:\n");
+        let response = {
+            "id": rows[0].id,
+            "title": rows[0].title,
+            "url": rows[0].url,
+            "timestamp": rows[0].timestamp,
+            "score": rows[0].score
+        };
+        res.set('Content-Type', 'application/json');
+        res.json(response);
+    });
+});
+
+app.put('/posts/:id/downvote',function(req, res){
+    conn.query(`UPDATE posts SET score = score - 1 WHERE id = "${req.params.id}"`, function(err, results, fields){
+        if(err) throw err;
+    });
+    conn.query(`SELECT * FROM posts WHERE id = "${req.params.id}"`, function(err, rows){
+        if(err) {
+            console.log(err.toString());
+        }
+        console.log("Data received from Db:\n");
+        let response = {
+            "id": rows[0].id,
+            "title": rows[0].title,
+            "url": rows[0].url,
+            "timestamp": rows[0].timestamp,
+            "score": rows[0].score
+        };
+        res.set('Content-Type', 'application/json');
+        res.json(response);
+    });
+});
+
 app.listen(4000);
