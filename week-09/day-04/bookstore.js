@@ -2,10 +2,13 @@
 
 const express = require('express');
 const app = express();
-const mysql = require('mysql');
 
 app.use('/assets', express.static('./assets'));
-app.use(express.json());
+app.get('/', function(req,res){
+    res.sendFile(__dirname + '/index.html');
+});
+
+const mysql = require('mysql');
 
 const conn = mysql.createConnection({
     host: 'localhost',
@@ -23,9 +26,6 @@ conn.connect(function(err){
     }
 });
 
-app.get('/', function(req,res){
-    res.sendFile(__dirname + '/index.html');
-});
 
 app.get('/list', function(req, res){
     conn.query('SELECT book_name FROM book_mast;', function(err, rows){
@@ -49,24 +49,36 @@ INNER JOIN category ON book_mast.cate_id = category.cate_id
 INNER JOIN publisher ON book_mast.pub_id = publisher.pub_id`;
 
 app.get('/all', function(req, res){
-    let selectorConditions = queryParser(req.query);
-    console.log(selector + selectorConditions);
+    let selectorConditions = createSelector(req.query);
     conn.query(selector + selectorConditions, function(err, rows){
         if(err) {
             console.log(err.toString());
         }
-        let htmlString = '<table>';
+        let htmlString = `<table>
+                            <thead>
+                              <th>Book title</th>
+                              <th>Author</th>
+                              <th>Category</th>
+                              <th>Publisher</th>
+                              <th>Book price</th>
+                            </thead>
+                            <tbody>`;
         rows.forEach(function(row) {
-            htmlString += '<tr><td>' + row.book_name + '</td><td>' + row.aut_name + '</td><td>' + row.cate_descrip + '</td><td>' + row.pub_name + '</td><td>' + row.book_price + '</td></tr>';
+            htmlString += `<tr>
+                             <td>` + row.book_name + `</td>
+                             <td>` + row.aut_name + `</td>
+                             <td>` + row.cate_descrip + `</td>
+                             <td>` + row.pub_name + `</td>
+                             <td>` + row.book_price + `</td></tr>`;
         });
-        htmlString = htmlString + '</table>';
+        htmlString = htmlString + '</tbody></table>';
         res.send(htmlString)
     });
 });
 
-function queryParser(query){
+function createSelector(query){
     let queryString = '';
-    if (query.length !== 0){
+    if (Object.keys(query).length !== 0){
         queryString += ' WHERE ';
         if (query.category) {
             queryString += 'cate_descrip = "' + query.category + '" AND ';
