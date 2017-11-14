@@ -1,6 +1,7 @@
 **/__pycache__
 **/*.jpg
 **/*.png
+**/*.svg
 **/.gf.json
 **/node_modules
 week-06/day05/index.html
