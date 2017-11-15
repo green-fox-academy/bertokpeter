@@ -11,6 +11,7 @@ const playlists = function(){
         list.playlists.forEach(function(element, i){
             createPlaylistElement(element, i);
         });
+        highlight(0);
     }
 
     function createPlaylistElement(playlist, index){
@@ -30,6 +31,11 @@ const playlists = function(){
         } else {
             playlistDiv.style.backgroundColor = 'white';
         }
+    }
+
+    function highlight(index){
+        let playlistDivs = plSection.querySelectorAll('div.playlist');
+        playlistDivs[index].style.backgroundColor = '#ABE7E5';
     }
 
     return {
