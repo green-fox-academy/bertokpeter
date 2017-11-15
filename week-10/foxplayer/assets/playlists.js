@@ -1,20 +1,22 @@
 'use strict';
-const playlists = function(){
+const playLists = function(){
     const plSection = document.querySelector('section.playlists');
+    let playlists;
 
-    function load(json){
-        let responseList = json;
-        render(responseList);
-    }
+    function load(json, callback){
+        let playlists = json;
+        render(playlists);
+        callback(playlists);
+    }   
 
     function render(list){
-        list.playlists.forEach(function(element, i){
-            createPlaylistElement(element, i);
+        list.playlists.forEach(function(element){
+            createPlaylistElement(element);
         });
         highlight(0);
     }
 
-    function createPlaylistElement(playlist, index){
+    function createPlaylistElement(playlist){
         let playlistDiv = document.createElement('div');
         playlistDiv.classList.add('playlist');
         plSection.appendChild(playlistDiv);
@@ -26,19 +28,21 @@ const playlists = function(){
             playlistX.textContent = 'x';
             playlistDiv.appendChild(playlistX);
         }
-        if (index%2 === 0){
-            playlistDiv.style.backgroundColor = '#b4b4b4';
+        if (playlist.id%2 !== 0){
+            playlistDiv.classList.add('odd');
         } else {
-            playlistDiv.style.backgroundColor = 'white';
+            playlistDiv.classList.add('even');
         }
     }
 
     function highlight(index){
         let playlistDivs = plSection.querySelectorAll('div.playlist');
-        playlistDivs[index].style.backgroundColor = '#ABE7E5';
+        playlistDivs[index].classList.toggle('highlighted');
     }
 
     return {
-        load
+        load,
+        activePlayList: 1,
+        playlists
     }
 };
