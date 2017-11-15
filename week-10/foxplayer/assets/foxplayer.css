@@ -78,6 +78,7 @@ section.playlists {
 }
 
 .playlist {
+    box-sizing: border-box;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -90,10 +91,6 @@ section.playlists {
 
 .playlist p, .playlist div{
     line-height: 1em;
-}
-
-.highlighted {
-    background: #ABE7E5;
 }
 
 div.right {
@@ -139,6 +136,43 @@ div.icons{
 
 section.tracklist {
     height: 360px;
+}
+
+.track {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    height: 2rem;
+    width: 100%;
+}
+
+.track p {
+    line-height: 1em;
+}
+
+.number {
+    color: #C2C2C2;
+}
+
+.tracktitle {
+    width: 80%;
+}
+
+.odd {
+    background-color: #b4b4b4;
+}
+
+.even {
+    background-color: white;
+}
+
+.highlighted {
+    background-color: #ABE7E5;
 }
 
 footer {
