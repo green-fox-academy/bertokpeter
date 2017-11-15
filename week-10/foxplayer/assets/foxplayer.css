@@ -9,7 +9,6 @@ body {
 }
 
 div.container * {
-    background-color: white;
     /* border: 1px solid black; */
 }
 
@@ -45,6 +44,7 @@ div.left {
 }
 
 div.logo {
+    background-color: white;
     border-radius: 7.5px 0 0 0;
     grid-area: logo;
 }
@@ -60,6 +60,7 @@ img.album {
 }
 
 section.adder {
+    background-color: white;
     grid-area: adder;
     padding-left: 1rem;
     display: flex;
@@ -76,12 +77,32 @@ section.playlists {
     grid-area: playlists;
 }
 
+.playlist {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    height: 2rem;
+}
+
+.playlist p, .playlist div{
+    line-height: 1em;
+}
+
+.highlighted {
+    background: #ABE7E5;
+}
+
 div.right {
     grid-area: right;
     border-radius: 0 7.5px 0 0;
 }
 
 section.info {
+    background-color: white;
     height: 60px;
     border-radius: 0 7.5px 0 0;
     display: flex;
@@ -136,7 +157,7 @@ footer img:nth-of-type(1){
 }
 
 footer img:nth-of-type(2){
-    left: 75px;
+    left: 65px;
 }
 
 audio {
