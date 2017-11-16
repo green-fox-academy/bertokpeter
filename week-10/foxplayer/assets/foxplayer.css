@@ -1,7 +1,6 @@
 * {
     margin: 0;
     font-family: 'Lato', sans-serif;
-    color: #838486;
 }
 
 body {
@@ -13,6 +12,7 @@ div.container * {
 }
 
 div.container {
+    color: #838486;
     margin: 100px auto;
     width: 900px;
     height: 450px;
@@ -73,6 +73,25 @@ section.adder h1 {
     font-weight: 600;
 }
 
+p.plus {
+    cursor: pointer;
+}
+
+div.dialog {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100px;
+    background-color: #FFF;
+    border: 5px solid #0077CC;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    top: 325px;
+    margin: auto;
+    color: #000 !important;
+}
+
 section.playlists {
     grid-area: playlists;
     overflow-y: scroll;
@@ -88,6 +107,7 @@ section.playlists {
     font-size: 1rem;
     font-weight: 600;
     height: 2rem;
+    cursor: pointer;
 }
 
 .playlist p, .playlist div{
@@ -151,6 +171,7 @@ section.tracklist {
     font-weight: 600;
     height: 2rem;
     width: 100%;
+    cursor: pointer;
 }
 
 .track p {
