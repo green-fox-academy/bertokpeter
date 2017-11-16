@@ -12,9 +12,9 @@ const controlPanel = function(){
     }
 
     function addEvents(){
-        // audio.addEventListener('ended', function(){
-        //     onEndAction()
-        // });
+        audio.addEventListener('ended', function(){
+            forwardClickAction();
+        });
         forward.addEventListener('click',function(){
             forwardClickAction();
         });
