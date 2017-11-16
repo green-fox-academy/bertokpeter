@@ -2,48 +2,92 @@
 
 const express = require('express');
 const app = express();
+const mysql = require('mysql');
 
 app.use('/assets', express.static('./assets'));
 app.use('/tracks', express.static('./tracks'));
 app.use(express.json());
 
+let conn = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'root',
+    database: 'foxplayer'
+});
+
+conn.connect(function(err){
+    if(err){
+        console.log("Error connecting to Db");
+        return;
+    } else {
+        console.log("Connection established");
+    }
+});
+
 app.get('/', function (req, res){
     res.sendFile(__dirname + '/foxplayer.html')
 });
 
-let playlists = {
-    playlists:[
-        { "id": 1, "title": "All tracks", "system": 1},
-        { "id": 2, "title": "Favorites", "system": 1},
-        { "id": 3, "title": "Music for programming", "system": 0},
-        { "id": 4, "title": "Driving", "system": 0},
-        { "id": 5, "title": "Fox house", "system": 0},
-    ]
-};
-
-let tracklist = {
-    tracklist:[
-        { "id": 1, "title": "Warped", "artist": "Mutato Muzika", "duration": 80, "path": "tracks/01_-_Crash_Bandicoot_3_Warped.mp3", "playlists": []},
-        { "id": 2, "title": "Toad Village", "artist": "Mutato Muzika", "duration": 108, "path": "tracks/02_-_Toad_Village.mp3", "playlists": ["2"]}
-    ]
-}
-
 app.get('/playlists', function(req, res) {
-    res.json(playlists);
+    conn.query('SELECT * FROM playlists', function(err, rows){
+        if(err) {
+            console.log(err.toString());
+        }
+        console.log("Data received from Db:\n");
+        let responsePlaylists = {"playlists": []};
+        rows.forEach(function(playlist){
+            responsePlaylists.playlists.push({
+                "id": playlist.id,
+                "title": playlist.title,
+                "system": playlist.system
+            });
+        });
+        res.json(responsePlaylists);
+    });
 });
 
 app.get('/playlist-tracks', function(req, res) {
-    res.json(tracklist);
+    let allSelector = 'SELECT id, DISTINCT title, artist, duration, path, playlists FROM tracklist';
+    conn.query(allSelector, function(err, rows){
+        if(err) {
+            console.log(err.toString());
+        }
+        console.log("Data received from Db:\n");
+        let responseAllTracks = {"tracklist": []};
+        rows.forEach(function(track){
+            responseAllTracks.push({
+                "id": track.id,
+                "title": track.title,
+                "artist": track.artist,
+                "duration": track.duration,
+                "path": track.path,
+                "playlists": track.playlists_id
+            });
+        });
+        res.json(responseAllTracks);
+    });
 });
 
 app.get('/playlist-tracks/:playlist_id', function(req, res) {
-    let responseTrackList = tracklist.tracklist.filter(function(element){
-        return element.playlists.includes(req.params.playlist_id);
+    let listSelector = 'SELECT * FROM tracklist WHERE playlists_id = ' + req.params.playlist_id + ';';
+    conn.query(listSelector, function(err, rows){
+        if(err) {
+            console.log(err.toString());
+        }
+        console.log("Data received from Db:\n");
+        let responseTracklist = {"tracklist":[]};
+        rows.forEach(function(track){
+            responseAllTracks.push({
+                "id": track.id,
+                "title": track.title,
+                "artist": track.artist,
+                "duration": track.duration,
+                "path": track.path,
+                "playlists": track.playlists_id
+            });
+        });
+        res.json(responseTracklist);
     });
-    let responseJSON = {
-        tracklist: responseTrackList
-    }
-    res.json(responseJSON);
 });
 
 app.listen(5000);
