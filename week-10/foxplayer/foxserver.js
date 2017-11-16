@@ -46,6 +46,27 @@ app.get('/playlists', function(req, res) {
     });
 });
 
+app.post('/playlists', function(req, res) {
+    conn.query('INSERT INTO playlists SET ?', req.body, function(err, results, fields){
+        if(err) throw err;
+    });
+    conn.query('SELECT * FROM playlists', function(err, rows){
+        if(err) {
+            console.log(err.toString());
+        }
+        console.log("Data received from Db:\n");
+        let responsePlaylists = {"playlists": []};
+        rows.forEach(function(playlist){
+            responsePlaylists.playlists.push({
+                "id": playlist.id,
+                "title": playlist.title,
+                "system": playlist.system
+            });
+        });
+        res.json(responsePlaylists);
+    });
+});
+
 app.get('/playlist-tracks', function(req, res) {
     let allSelector = 'SELECT * FROM tracklist GROUP BY title';
     conn.query(allSelector, function(err, rows){
