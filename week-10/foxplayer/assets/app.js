@@ -8,6 +8,7 @@ class App {
         const myTrackList = trackList();
 
         myPlayLists.load();
+        myPlayLists.clickHandler(myTrackList.load);
         myTrackList.firstHandler([myPanel.playTrack, myTrackInfo.display]);
         myTrackList.load();
 
