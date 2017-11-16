@@ -2,19 +2,20 @@
 const playLists = function(){
     const plSection = document.querySelector('section.playlists');
     let myAjax = ajax();
+    let playlistClickAction;
 
     function load(){
         myAjax.xml('GET', "http://localhost:5000/playlists", render);
     }   
 
     function render(list){
-        list.playlists.forEach(function(element){
-            createPlaylistElement(element);
+        list.playlists.forEach(function(element, index){
+            createPlaylistElement(element, index);
         });
         highlight(0);
     }
 
-    function createPlaylistElement(playlist){
+    function createPlaylistElement(playlist, index){
         let playlistDiv = document.createElement('div');
         playlistDiv.classList.add('playlist');
         plSection.appendChild(playlistDiv);
@@ -31,17 +32,30 @@ const playLists = function(){
         } else {
             playlistDiv.classList.add('even');
         }
+        addEvents(playlistDiv, playlist, index);
     }
 
     function highlight(index){
         let playlistDivs = plSection.querySelectorAll('div.playlist');
-        playlistDivs[index].classList.toggle('highlighted');
+        playlistDivs.forEach(function(element){
+            element.classList.remove('highlighted');
+        });
+        playlistDivs[index].classList.add('highlighted');
     }
 
+    function addEvents(object, playlist, index){
+        object.addEventListener('click', function(){
+            playlistClickAction("/" + playlist.id);
+            highlight(index);
+        });
+    }
 
-    load();
+    function clickHandler(callback){
+        playlistClickAction = callback;
+    }
+
     return {
         load,
-        activePlayList: 1,
+        clickHandler
     }
 };
