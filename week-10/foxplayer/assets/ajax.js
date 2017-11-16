@@ -2,16 +2,19 @@
 const ajax = function (){
     const playerRequest = new XMLHttpRequest();
 
-    function talkToAPI (method, url, content, callback, setvariable) {
+    function xml(method, url, callback, content=null) {
         playerRequest.open(method, url, true);
+        if (method !== 'GET'){
+            content = JSON.stringify(content)
+        }
         playerRequest.onload = function(){
             let list = JSON.parse(playerRequest.response);
-            callback(list, setvariable);
+            callback(list);
         };
-        playerRequest.send(JSON.stringify(content));
+        playerRequest.send(content);
     }
 
     return {
-        talkToAPI
+        xml
     }
 };
