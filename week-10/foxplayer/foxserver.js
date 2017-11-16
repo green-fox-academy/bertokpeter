@@ -47,7 +47,7 @@ app.get('/playlists', function(req, res) {
 });
 
 app.get('/playlist-tracks', function(req, res) {
-    let allSelector = 'SELECT id, DISTINCT title, artist, duration, path, playlists FROM tracklist';
+    let allSelector = 'SELECT * FROM tracklist GROUP BY title';
     conn.query(allSelector, function(err, rows){
         if(err) {
             console.log(err.toString());
@@ -55,7 +55,7 @@ app.get('/playlist-tracks', function(req, res) {
         console.log("Data received from Db:\n");
         let responseAllTracks = {"tracklist": []};
         rows.forEach(function(track){
-            responseAllTracks.push({
+            responseAllTracks.tracklist.push({
                 "id": track.id,
                 "title": track.title,
                 "artist": track.artist,
@@ -77,7 +77,7 @@ app.get('/playlist-tracks/:playlist_id', function(req, res) {
         console.log("Data received from Db:\n");
         let responseTracklist = {"tracklist":[]};
         rows.forEach(function(track){
-            responseAllTracks.push({
+            responseTracklist.tracklist.push({
                 "id": track.id,
                 "title": track.title,
                 "artist": track.artist,
