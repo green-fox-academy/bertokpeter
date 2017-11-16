@@ -1,6 +1,11 @@
 'use strict';
 const playLists = function(){
     const plSection = document.querySelector('section.playlists');
+    const plAdder = document.querySelector('p.plus');
+    const adderDialog = document.querySelector('.adder .dialog');
+    const cancelBtn = adderDialog.querySelector('.cancel');
+    const okBtn = adderDialog.querySelector('.ok');
+    const plInput = adderDialog.querySelector('input');
     let myAjax = ajax();
     let playlistClickAction;
 
@@ -9,6 +14,7 @@ const playLists = function(){
     }   
 
     function render(list){
+        plSection.innerHTML = '';
         list.playlists.forEach(function(element, index){
             createPlaylistElement(element, index);
         });
@@ -50,10 +56,27 @@ const playLists = function(){
         });
     }
 
+    function create(){
+        plAdder.addEventListener('click', function(){
+            adderDialog.style.display = 'flex';
+        });
+        cancelBtn.addEventListener('click', function(){
+            adderDialog.style.display = 'none';
+        });
+        okBtn.addEventListener('click', function(){
+            let reqBody = {
+                "title": plInput.value
+            };
+            myAjax.xml('POST', "http://localhost:5000/playlists", render, reqBody);
+            adderDialog.style.display = 'none';
+        });
+    }
+
     function clickHandler(callback){
         playlistClickAction = callback;
     }
 
+    create();
     return {
         load,
         clickHandler
