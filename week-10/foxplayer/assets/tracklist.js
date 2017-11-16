@@ -1,5 +1,5 @@
 'use strict';
-const trackList = function(playListNumber){
+const trackList = function(){
     const tlSection = document.querySelector('.tracklist');
     let trackClickAction;
     let tracks;
@@ -7,8 +7,9 @@ const trackList = function(playListNumber){
     let myAjax = ajax();
     let currrentTrack = 0;
 
-    function load(){
-        myAjax.xml('GET', "http://localhost:5000/playlist-tracks", render);        
+    function load(params=""){
+        tlSection.innerHTML = '';
+        myAjax.xml('GET', "http://localhost:5000/playlist-tracks" + params, render);        
     }
         
     function render(list){
@@ -39,7 +40,7 @@ const trackList = function(playListNumber){
         } else {
             trackDiv.classList.add('even');
         }
-        addEvetns(trackDiv, track, index)
+        addEvetns(trackDiv, track, index);
     }
 
     function highlight(index){
