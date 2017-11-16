@@ -75,6 +75,7 @@ section.adder h1 {
 
 section.playlists {
     grid-area: playlists;
+    overflow-y: scroll;
 }
 
 .playlist {
@@ -136,6 +137,7 @@ div.icons{
 
 section.tracklist {
     height: 360px;
+    overflow-y: scroll;
 }
 
 .track {
