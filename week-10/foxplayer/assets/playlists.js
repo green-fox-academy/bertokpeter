@@ -1,12 +1,10 @@
 'use strict';
 const playLists = function(){
     const plSection = document.querySelector('section.playlists');
-    let playlists;
+    let myAjax = ajax();
 
-    function load(json, callback){
-        let playlists = json;
-        render(playlists);
-        callback(playlists);
+    function load(){
+        myAjax.xml('GET', "http://localhost:5000/playlists", render);
     }   
 
     function render(list){
@@ -40,9 +38,10 @@ const playLists = function(){
         playlistDivs[index].classList.toggle('highlighted');
     }
 
+
+    load();
     return {
         load,
         activePlayList: 1,
-        playlists
     }
 };
