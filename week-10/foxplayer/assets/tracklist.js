@@ -2,19 +2,24 @@
 const trackList = function(playListNumber){
     const tlSection = document.querySelector('.tracklist');
     let trackClickAction;
-    let firstTrack;
+    let tracks;
+    let setFirst;
     let myAjax = ajax();
+    let currrentTrack = 0;
 
     function load(){
         myAjax.xml('GET', "http://localhost:5000/playlist-tracks", render);        
     }
         
     function render(list){
-        list.tracklist.forEach(function(element, index){
-            createTrackElement(element, index);
+        tracks = list;
+        list.tracklist.forEach(function(element, index, ){
+            createTrackElement(element, index)
         });
         highlight(0);
-        setFirst(list.tracklist[0].path);
+        setFirst.forEach(function(callback){
+            callback(list.tracklist[0])
+        });
     }
 
     function createTrackElement(track, index){
@@ -29,12 +34,12 @@ const trackList = function(playListNumber){
         trackTitle.textContent = track.title;
         trackTitle.classList.add('tracktitle');
         trackDiv.appendChild(trackTitle);
-        if (index === 0){
+        if (index%2 === 0){
             trackDiv.classList.add('odd');
         } else {
             trackDiv.classList.add('even');
         }
-        addEvetns(trackDiv, track.path, index)
+        addEvetns(trackDiv, track, index)
     }
 
     function highlight(index){
@@ -45,29 +50,49 @@ const trackList = function(playListNumber){
         tracklistDivs[index].classList.add('highlighted');
     }
 
-    function addEvetns(object, path, index){
+    function addEvetns(object, track, index){
         object.addEventListener('click', function(){
-            trackClickAction(path);
+            trackClickAction.forEach(function(callback){
+                callback(track);
+            });
             highlight(index);
+            currrentTrack = index;
         });
     }
 
-    function clickHandler(callback){
-        trackClickAction = callback;
+    function clickHandler(callbackArray){
+        trackClickAction = callbackArray;
     }
 
-    function setFirst(path){
-        firstTrack(path);
+    function playNext(){
+        if (currrentTrack+1 < tracks.tracklist.length){
+            currrentTrack += 1;
+            trackClickAction.forEach(function(callback){
+                callback(tracks.tracklist[currrentTrack]);
+            });
+            highlight(currrentTrack);
+        }
     }
 
-    function firstHandler(callback){
-        firstTrack = callback;
+    function playPrev(){
+        if (currrentTrack-1 >= 0){
+            currrentTrack -= 1;
+            trackClickAction.forEach(function(callback){
+                callback(tracks.tracklist[currrentTrack]);
+            });
+            highlight(currrentTrack);
+        }
+    }
+
+    function firstHandler(callbackArray){
+        setFirst = callbackArray;
     }
     
     return {
+        playNext,
+        playPrev,
         firstHandler,
         clickHandler,
-        load,
-        activeTrack: 1
+        load
     }
 };
