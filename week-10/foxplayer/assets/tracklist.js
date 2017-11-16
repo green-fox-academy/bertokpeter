@@ -1,12 +1,12 @@
 'use strict';
 const trackList = function(playListNumber){
     const tlSection = document.querySelector('.tracklist');
-    let tracks;
+    let trackClickAction;
+    let firstTrack;
+    let myAjax = ajax();
 
-    function load(json, callback){
-        tracks = json;
-        render(tracks);
-        callback(tracks);
+    function load(){
+        myAjax.xml('GET', "http://localhost:5000/playlist-tracks", render);        
     }
         
     function render(list){
@@ -14,6 +14,7 @@ const trackList = function(playListNumber){
             createTrackElement(element, index);
         });
         highlight(0);
+        setFirst(list.tracklist[0].path);
     }
 
     function createTrackElement(track, index){
@@ -33,16 +34,40 @@ const trackList = function(playListNumber){
         } else {
             trackDiv.classList.add('even');
         }
+        addEvetns(trackDiv, track.path, index)
     }
 
     function highlight(index){
         let tracklistDivs = tlSection.querySelectorAll('div.track');
-        tracklistDivs[index].classList.toggle('highlighted');
+        tracklistDivs.forEach(function(element){
+            element.classList.remove('highlighted');
+        });
+        tracklistDivs[index].classList.add('highlighted');
     }
 
+    function addEvetns(object, path, index){
+        object.addEventListener('click', function(){
+            trackClickAction(path);
+            highlight(index);
+        });
+    }
+
+    function clickHandler(callback){
+        trackClickAction = callback;
+    }
+
+    function setFirst(path){
+        firstTrack(path);
+    }
+
+    function firstHandler(callback){
+        firstTrack = callback;
+    }
+    
     return {
+        firstHandler,
+        clickHandler,
         load,
-        tracks,
         activeTrack: 1
     }
 };
