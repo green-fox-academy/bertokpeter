@@ -3,13 +3,17 @@
 class App {
     constructor(){
         const myPanel = controlPanel();
+        const myTrackInfo = trackInfo();
         const myPlayLists = playLists();
         const myTrackList = trackList();
 
-        myTrackList.firstHandler(myPanel.playTrack);
+        myPlayLists.load();
+        myTrackList.firstHandler([myPanel.playTrack, myTrackInfo.display]);
         myTrackList.load();
 
-        myTrackList.clickHandler(myPanel.playTrack);
+        myTrackList.clickHandler([myPanel.playTrack, myTrackInfo.display]);
+        myPanel.nextBtnPressed(myTrackList.playNext);
+        myPanel.prevBtnPressed(myTrackList.playPrev);
     }
 }
 
